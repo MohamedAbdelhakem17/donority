@@ -1,0 +1,55 @@
+.main-title+.container {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & .auth-form {
+        background-color: var(--form-bg);
+        width: 60%;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.116);
+
+        .input-colaction {
+            padding: 5px;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+
+            label {
+                font-size: 1.3rem;
+                padding: 5px 0;
+                color: var(--main-color);
+                font-weight: 700;
+            }
+
+            input {
+                border: .5px solid var(--main-color);
+                width: 100%;
+                padding: 10px 20px;
+                border-radius: 10px;
+                outline: none;
+                font-size: 18px;
+                &:focus {
+                border: .5px solid var(--main-color-alt);
+                }
+            }
+        
+        }
+
+        .btn {
+            display: block;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 10px 50px;
+            margin: 10px auto ;
+            background-color: var(--main-color);
+            transition: background-color 200ms ease-in-out;
+            &:hover  {
+            background-color: var(--main-color-alt);
+            }
+        }
+    }
+}
