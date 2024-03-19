@@ -8,6 +8,7 @@
 :root {
   --main-color: rgb(0, 101, 149);
   --main-color-alt: rgb(14, 170, 75);
+  --form-bg: rgb(230, 230, 230);
   --main-transition: 0.3s;
   --main-padding-top: 100px;
   --main-padding-bottom: 100px;
@@ -53,6 +54,20 @@ ul {
     & {
       width: 1170px;
     }
+  }
+}
+
+.main-title {
+  padding: 30px 50px;
+  background-image: url("../img/HeroBg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 63%;
+  box-shadow: inset 1000px 1000px 10px #0000007c;
+
+  h2 {
+    color: white;
+    font-size: 4rem
   }
 }
 
