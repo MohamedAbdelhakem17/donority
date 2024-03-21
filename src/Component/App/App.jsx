@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home apiLink={Base_API_URL} /> },
       { path: "/signin", element: <Signin /> },
-      { path: "/signup", element: <Signup /> }
+      { path: "/signup", element: <Signup apiLink={Base_API_URL} /> }
     ]
   }
 ]);
