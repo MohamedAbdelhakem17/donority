@@ -31,11 +31,24 @@
                 border-radius: 10px;
                 outline: none;
                 font-size: 18px;
-                &:focus {
-                border: .5px solid var(--main-color-alt);
+
+                &:focus,
+                &.valid {
+                    border: .5px solid var(--main-color-alt);
+                }
+
+                &.not-valid {
+                    border: .5px solid red;
                 }
             }
-        
+
+
+        }
+
+        .error {
+            font-weight: 500;
+            color: red;
+            padding: 10px 20px;
         }
 
         .btn {
@@ -44,11 +57,30 @@
             font-weight: 600;
             font-size: 18px;
             padding: 10px 50px;
-            margin: 10px auto ;
+            margin: 10px auto;
             background-color: var(--main-color);
             transition: background-color 200ms ease-in-out;
-            &:hover  {
-            background-color: var(--main-color-alt);
+
+            &:hover {
+                background-color: var(--main-color-alt);
+            }
+        }
+
+        @media (max-width: 994px) {
+            & {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 767px) {
+            & {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 550px) {
+            & {
+                width: 100%;
             }
         }
     }
