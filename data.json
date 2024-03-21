@@ -62,12 +62,5 @@
       "id": "4",
       "type": "Furniture"
     }
-  ],
-  "Comment": "For Use Server Run this Command _  npx json-server data.json  _"
-}
-    { "id": 1, "type": "Food" },
-    { "id": 2, "type": "Clothes" },
-    { "id": 3, "type": "Money" },
-    { "id": 4, "type": "Furniture" }
   ]
 }
