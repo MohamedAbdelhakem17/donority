@@ -8,7 +8,7 @@ export default function Signin() {
     });
 
 
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({apiLink});
 
     const [loader, setLoader] = useState(false);
 
