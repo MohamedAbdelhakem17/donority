@@ -1,14 +1,18 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-
-export default function Signin({apiLink}) {
+import { useNavigate } from "react-router-dom";
+import useAuth from '../../../Context/AuthContext/AuthContext';
+export default function Signin({ apiLink }) {
     const [userData, setUserData] = useState({
-        userEmail: "",
-        userPassword: "",
+        email: "",
+        password: "",
     });
 
+    const navigatTo = useNavigate()
 
-    const [errors, setErrors] = useState({apiLink});
+    const { saveUserData, setIsLoggedIn } = useAuth()
+
+    const [errors, setErrors] = useState({});
 
     const [loader, setLoader] = useState(false);
 
@@ -19,25 +23,34 @@ export default function Signin({apiLink}) {
     };
 
     const sendUserDataToDatabase = async () => {
-        setLoader(true);
-        const apiUrl = `${apiLink}/users`;
-        const { data } = await axios.post(apiUrl, userData);
-        if (data) {
-            // Show a user alert indicating successful sign-up and navigate to the login page after 2 seconds
-            console.log(data)
-        } else {
-            // // Display any errors returned from the response. This involves showing any error messages or information included in the response .
-            console.log(false)
+        try {
+            setLoader(true);
+            const { email, password } = userData
+            const apiUrl = `${apiLink}GetUser?email=${email}&password=${encodeURIComponent(password)}`;
+            const { data } = await axios.get(apiUrl);
+            const { Code, data: responsData, Message } = data
+            console.log(userData)
+            if (Code === 200) {
+                localStorage.setItem("user", JSON.stringify(responsData))
+                setIsLoggedIn(true)
+                saveUserData()
+                navigatTo("/")
+            } else {
+                setErrors({ all: Message })
+            }
+            setLoader(false);
+        } catch (error) {
+            console.error(error)
+            setLoader(false);
         }
-        setLoader(false);
     };
 
     // Valid Data Function
     function dataValdtion() {
         setErrors({});
-        const { userEmail, userPassword } = userData
-        const userEmailIsValid = /[\w.-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,}/.test(userEmail);
-        const userPasswordisValid = /\w{8,25}/gi.test(userPassword);
+        const { email, password } = userData
+        const userEmailIsValid = /[\w.-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,}/.test(email);
+        const userPasswordisValid = /\w{8,25}/gi.test(password);
         const userDataValues = Object.values(userData);
         const allIsEmpty = userDataValues.every((element) => element.trim() !== "");
         if (!allIsEmpty)
@@ -74,12 +87,12 @@ export default function Signin({apiLink}) {
                     <form className='auth-form mt-5' onSubmit={onSubmitHandel}>
                         <div className="input-colaction">
                             <label htmlFor="userEmail">Email *</label>
-                            <input onChange={collectUserData} type="email" name='userEmail' id='userEmail' className={errors.userEmail && "not-valid"} />
+                            <input onChange={collectUserData} type="email" name='email' id='userEmail' className={errors.userEmail && "not-valid"} />
                             {errors.userEmail && <span className='error'>{errors.userEmail}</span>}
                         </div>
                         <div className="input-colaction">
                             <label htmlFor="userPassword">Password*</label>
-                            <input onChange={collectUserData} type="password" name='userPassword' id='userPassword' className={errors.userPassword && "not-valid"} />
+                            <input onChange={collectUserData} type="password" name='password' id='userPassword' className={errors.userPassword && "not-valid"} />
                             {errors.userPassword && <span className='error'>{errors.userPassword}</span>}
                         </div>
                         <button type='submit' className={loader ? "disabled btn" : "btn"}>{loader ? <i
