@@ -17,19 +17,6 @@ npm install
 
 This command will install all the required packages listed in the `package.json` file.
 
-## Setting Up the Fake Server
-
-Donority app utilizes a fake server for development purposes. To start the fake server, run the following command:
-
-```
-npx json-server data.json
-```
-
-This command will start the fake server using the data provided in the `data.json` file.
-
-## Running the App
-
-Once the dependencies are installed and the fake server is up and running, you can start the Donority app. Use the following command:
 
 ```
 npm start
