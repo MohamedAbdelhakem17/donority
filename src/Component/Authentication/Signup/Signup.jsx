@@ -4,14 +4,16 @@ import axios from 'axios'
 
 export default function Signup({ apiLink }) {
     const [userData, setUserData] = useState({
-        firstName: "",
-        lastName: "",
-        userEmail: "",
-        userPassword: "",
-        confirmPassword: "",
-        userPhone: "",
-        quation: "",
-        userAddress: "",
+        user_name: "",
+        password: "",
+        mobile_number: "",
+        secert_answer: "",
+        is_admin: 0,
+        first_name: "",
+        last_name: "",
+        email: "",
+        id_number: "",
+        address: "",
     });
 
     const [errors, setErrors] = useState({});
@@ -21,36 +23,43 @@ export default function Signup({ apiLink }) {
     const collectUserData = (event) => {
         const user = { ...userData };
         user[event.target.name] = event.target.value.trim();
+        user.user_name = `${user.first_name} ${user.last_name}`
         setUserData(user);
     };
 
     const sendUserDataToDatabase = async () => {
-        setLoader(true);
-        const apiUrl = `${apiLink}/users`;
-        const { data } = await axios.post(apiUrl, userData);
-        if (data) {
-            // Show a user alert indicating successful sign-up and navigate to the login page after 2 seconds
+        try {
+            setLoader(true);
+            const apiUrl = `${apiLink}AddUser`;
+            const { data } = await axios.post(apiUrl, userData);
+            const { Code, Message } = data
             console.log(data)
-        } else {
-            // // Display any errors returned from the response. This involves showing any error messages or information included in the response .
-            console.log(false)
+            if (Code === 200) {
+                // Show a user alert indicating successful sign-up and navigate to the login page after 2 seconds
+                console.log(data)
+            } else {
+                setErrors({ all: Message })
+            }
+            setLoader(false);
+        } catch (error) {
+            console.error(error)
+            setLoader(false);
         }
-        setLoader(false);
     };
 
     // Valid Data Function
     function dataValdtion() {
         setErrors({});
-        const { firstName, lastName, userEmail, userPassword, confirmPassword, userPhone, userAddress, quation } = userData
-        const firstNameIsValid = /[a-zA-z]{1,25}/gi.test(firstName);
-        const lastNameIsValid = /[a-zA-z]{1,25}/gi.test(lastName);
-        const userEmailIsValid = /[\w.-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,}/.test(userEmail);
-        const userPasswordisValid = /\w{8,25}/gi.test(userPassword);
-        const confirmPasswordIsValid = userPassword === confirmPassword;
-        const userPhoneIsValid = /01[0125][0-9]{8}/gi.test(userPhone);
-        const quationAnswerIsValid = /[a-zA-z]{2,25}/gi.test(quation);
+        const { first_name, last_name, email, password, confirmPassword, mobile_number, address, secert_answer } = userData
+        const firstNameIsValid = /[a-zA-z]{1,25}/gi.test(first_name);
+        const lastNameIsValid = /[a-zA-z]{1,25}/gi.test(last_name);
+        const userEmailIsValid = /[\w.-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,}/.test(email);
+        const userPasswordisValid = /\w{8,25}/gi.test(password);
+        const confirmPasswordIsValid = password === confirmPassword;
+        const userPhoneIsValid = /01[0125][0-9]{8}/gi.test(mobile_number);
+        const quationAnswerIsValid = /[a-zA-z]{2,25}/gi.test(secert_answer);
         const userDataValues = Object.values(userData);
-        const allIsEmpty = userDataValues.slice(0, userAddress.length - 1).every(
+        const allIsEmpty = userDataValues.slice(0, userData.length - 1).every(
             (element) => element.trim() !== ""
         );
         if (!allIsEmpty)
@@ -112,25 +121,25 @@ export default function Signup({ apiLink }) {
                     <form className='auth-form' onSubmit={onSubmitHandel}>
                         <div className="input-colaction">
                             <label htmlFor="firstName">First Name *</label>
-                            <input onChange={collectUserData} type="text" name='firstName' id='firstName'
+                            <input onChange={collectUserData} type="text" name='first_name' id='firstName'
                                 className={errors.firstName && "not-valid"} />
                             {errors.firstName && <span className='error'>{errors.firstName}</span>}
                         </div>
                         <div className={"input-colaction"}>
                             <label htmlFor="lastName">Last Name *</label>
-                            <input onChange={collectUserData} type="text" name='lastName' id='lastName'
+                            <input onChange={collectUserData} type="text" name='last_name' id='lastName'
                                 className={errors.lastName && "not-valid"} />
                             {errors.lastName && <span className='error'>{errors.last}</span>}
                         </div>
                         <div className="input-colaction">
                             <label htmlFor="userEmail">Email *</label>
-                            <input onChange={collectUserData} type="email" name='userEmail' id='userEmail'
+                            <input onChange={collectUserData} type="email" name='email' id='userEmail'
                                 className={errors.userEmail && "not-valid"} />
                             {errors.userEmail && <span className='error'>{errors.userEmail}</span>}
                         </div>
                         <div className="input-colaction">
                             <label htmlFor="userPassword">Password*</label>
-                            <input onChange={collectUserData} type="password" name='userPassword' id='userPassword'
+                            <input onChange={collectUserData} type="password" name='password' id='userPassword'
                                 className={errors.userPassword && "not-valid"} />
                             {errors.userPassword && <span className='error'>{errors.userPassword}</span>}
                         </div>
@@ -142,17 +151,17 @@ export default function Signup({ apiLink }) {
                         </div>
                         <div className="input-colaction">
                             <label htmlFor="userPhone">Phone Number *</label>
-                            <input onChange={collectUserData} type="text" name='userPhone' id='userPhone'
+                            <input onChange={collectUserData} type="text" name='mobile_number' id='userPhone'
                                 className={errors.userPhone && "not-valid"} />
                             {errors.userPhone && <span className='error'>{errors.userPhone}</span>}
                         </div>
                         <div className="input-colaction">
                             <label htmlFor="userAddress">Address</label>
-                            <input onChange={collectUserData} type="text" name='userAddress' id='userAddress' />
+                            <input onChange={collectUserData} type="text" name='address' id='userAddress' />
                         </div>
                         <div className="input-colaction">
                             <label htmlFor="quation">What is Your Mother's Name ? *</label>
-                            <input onChange={collectUserData} type="text" name='quation' id='quation' />
+                            <input onChange={collectUserData} type="text" name='secert_answer' id='quation' />
                         </div>
                         <button type='submit' className={loader ? "disabled btn" : "btn"}>{loader ? <i
                             className="fa-solid fa-spinner fa-spin"></i> : "Register"}</button>

@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import useAuth from '../../../Context/AuthContext/AuthContext';
+import "../Static/authentication.css"
+
 export default function Signin({ apiLink }) {
     const [userData, setUserData] = useState({
         email: "",
