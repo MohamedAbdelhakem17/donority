@@ -3,12 +3,15 @@ import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import useAuth from '../../../Context/AuthContext/AuthContext';
 import "../Static/authentication.css"
+import useLocalization from '../../../Context/LocalizationContext/LoclaesContext';
 
 export default function Signin({ apiLink }) {
     const [userData, setUserData] = useState({
         email: "",
         password: "",
     });
+    const { t } = useLocalization()
+    const content = (key) => t(`signin.${key}`)
 
     const navigatTo = useNavigate()
 
@@ -31,7 +34,6 @@ export default function Signin({ apiLink }) {
             const apiUrl = `${apiLink}GetUser?email=${email}&password=${encodeURIComponent(password)}`;
             const { data } = await axios.get(apiUrl);
             const { Code, data: responsData, Message } = data
-            console.log(userData)
             if (Code === 200) {
                 localStorage.setItem("user", JSON.stringify(responsData))
                 setIsLoggedIn(true)
@@ -47,7 +49,6 @@ export default function Signin({ apiLink }) {
         }
     };
 
-    // Valid Data Function
     function dataValdtion() {
         setErrors({});
         const { email, password } = userData
@@ -57,17 +58,15 @@ export default function Signin({ apiLink }) {
         const allIsEmpty = userDataValues.every((element) => element.trim() !== "");
         if (!allIsEmpty)
             setErrors({
-                all: " Please make sure to fill in all required fields before proceeding. It appears that some information is missing. Kindly provide valid input for all fields marked as mandatory.",
+                all: content("allError")
             });
         else if (!userEmailIsValid)
             setErrors({
-                userEmail:
-                    "Please make sure to enter your email address in the correct format. It should follow the standard email pattern, such as example@example.com. Ensure there are no spaces or special characters in the email address, and it includes both a username and domain name separated by '@'.      ",
+                userEmail: content("userEmailError")
             });
         else if (!userPasswordisValid)
             setErrors({
-                userPassword:
-                    " Please ensure that your password meets the following criteria: It must be between 8 and 25 characters long.It can contain any combination of alphanumeric characters(letters and numbers), as well as the following special characters: ! @ # $ % & *No spaces are allowed in the password.",
+                userPassword: content("userPasswordError")
             });
         else
             return true
@@ -83,22 +82,22 @@ export default function Signin({ apiLink }) {
         <>
             <section className='login'>
                 <div className="main-title">
-                    <h2>Log in</h2>
+                    <h2>{content("login")}</h2>
                 </div>
                 <div className="container">
                     <form className='auth-form mt-5' onSubmit={onSubmitHandel}>
                         <div className="input-colaction">
-                            <label htmlFor="userEmail">Email *</label>
+                            <label htmlFor="userEmail">{content("email")}</label>
                             <input onChange={collectUserData} type="email" name='email' id='userEmail' className={errors.userEmail && "not-valid"} />
                             {errors.userEmail && <span className='error'>{errors.userEmail}</span>}
                         </div>
                         <div className="input-colaction">
-                            <label htmlFor="userPassword">Password*</label>
+                            <label htmlFor="userPassword">{content("password")}</label>
                             <input onChange={collectUserData} type="password" name='password' id='userPassword' className={errors.userPassword && "not-valid"} />
                             {errors.userPassword && <span className='error'>{errors.userPassword}</span>}
                         </div>
                         <button type='submit' className={loader ? "disabled btn" : "btn"}>{loader ? <i
-                            className="fa-solid fa-spinner fa-spin"></i> : "Log in"}</button> {errors.all && <span
+                            className="fa-solid fa-spinner fa-spin"></i> : content("button")}</button> {errors.all && <span
                                 className='error text-center d-block '>{errors.all}</span>}
                     </form>
                 </div>

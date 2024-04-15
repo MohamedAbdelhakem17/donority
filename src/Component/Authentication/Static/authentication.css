@@ -66,6 +66,21 @@
             }
         }
 
+        .go-back {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--main-color-alt);
+            cursor: pointer;
+            transition: color var(--main-transition) ease-in-out;
+
+            &:hover {
+                color: var(--main-color);
+            }
+        }
+
         @media (max-width: 994px) {
             & {
                 width: 80%;

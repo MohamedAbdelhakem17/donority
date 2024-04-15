@@ -1,0 +1,43 @@
+{
+  "signup": {
+    "title": "Register",
+    "firstName": "First Name *",
+    "lastName": "Last Name *",
+    "email": "Email *",
+    "password": "Password *",
+    "confirmPassword": "Confirm Password *",
+    "phoneNumber": "Phone Number *",
+    "address": "Address",
+    "question": "What is Your Mother's address? *",
+    "registerButton": "Register",
+    "missingFieldsError": "Please make sure to fill in all required fields before proceeding. It appears that some information is missing. Kindly provide valid input for all fields marked as mandatory.",
+    "firstNameError": "Please ensure that your first name contains only alphabetical characters (A-Z or a-z) and is between 1 and 25 characters in length.",
+    "lastNameError": "Please ensure that your last name contains only alphabetical characters (A-Z or a-z) and is between 1 and 25 characters in length.",
+    "emailError": "Please make sure to enter your email address in the correct format. It should follow the standard email pattern, such as example@example.com. Ensure there are no spaces or special characters in the email address, and it includes both a username and domain name separated by '@'.",
+    "passwordError": "Please ensure that your password meets the following criteria: It must be between 8 and 25 characters long. It can contain any combination of alphanumeric characters (letters and numbers), as well as the following special characters: ! @ # $ % & * No spaces are allowed in the password.",
+    "confirmPasswordError": "We noticed that the confirmation password you provided does not match the original password. Please make sure that the confirmation password exactly matches the original password you entered earlier.",
+    "phoneNumberError": "We kindly ask you to provide a valid phone number.",
+    "questionError": "You must answer the question."
+  },
+
+  "signin": {
+    "userEmailError": "Please make sure to enter your email address in the correct format. It should follow the standard email pattern, such as example@example.com. Ensure there are no spaces or special characters in the email address, and it includes both a username and domain name separated by '@'.",
+    "userPasswordError": "Please ensure that your password meets the following criteria: It must be between 8 and 25 characters long. It can contain any combination of alphanumeric characters (letters and numbers), as well as the following special characters: ! @ # $ % & *. No spaces are allowed in the password.",
+    "allError": "Please make sure to fill in all required fields before proceeding. It appears that some information is missing. Kindly provide valid input for all fields marked as mandatory.",
+    "login": "Log in",
+    "email": "Email *",
+    "password": "Password *",
+    "button": "Log in"
+  },
+
+  "resetPassword": {
+    "mainTitle": "Reset Password",
+    "email": "Email *",
+    "answer": "Answer *",
+    "newPassword": "New Password *",
+    "getNewPassword": "Get New Password",
+    "setNewPassword": "Set New Password",
+    "goBack": "Go back",
+    "dir": "fa-caret-left"
+  }
+}
