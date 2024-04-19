@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import Typed from 'typed.js';
 import useLocalization from '../../../../Context/LocalizationContext/LoclaesContext';
+import { Link } from "react-router-dom";
+
 
 export default function Hero() {
   const el = useRef(null);
@@ -22,6 +24,9 @@ export default function Hero() {
       <section className='hero'>
         <div className="container">
           <div className="content" data-aos="fade-right" data-aos-duration="500" >
+            <Link className='btn btn-dark m-2' to="/signin">signin</Link>
+            <Link className='btn btn-dark m-2' to="/signup">signup</Link>
+            <Link className='btn btn-dark m-2' to="/reset-password">password</Link>
             <h2 className='slogen'>Charity Is Priority</h2>
             <h3>Giving Help To Those<br />Who Neer It.</h3>
             <p className='h3'>You can Donate  <span ref={el} /></p>

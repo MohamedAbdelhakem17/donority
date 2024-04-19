@@ -8,7 +8,7 @@
     "confirmPassword": "Confirm Password *",
     "phoneNumber": "Phone Number *",
     "address": "Address",
-    "question": "What is Your Mother's address? *",
+    "question": "if you forgot your password: What’s your mother's birth place? *",
     "registerButton": "Register",
     "missingFieldsError": "Please make sure to fill in all required fields before proceeding. It appears that some information is missing. Kindly provide valid input for all fields marked as mandatory.",
     "firstNameError": "Please ensure that your first name contains only alphabetical characters (A-Z or a-z) and is between 1 and 25 characters in length.",
@@ -33,7 +33,7 @@
   "resetPassword": {
     "mainTitle": "Reset Password",
     "email": "Email *",
-    "answer": "Answer *",
+    "answer": "What’s your mother's birth place? *",
     "newPassword": "New Password *",
     "getNewPassword": "Get New Password",
     "setNewPassword": "Set New Password",

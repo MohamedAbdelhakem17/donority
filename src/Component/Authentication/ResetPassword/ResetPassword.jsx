@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import querystring from 'querystring';
+// import querystring from 'querystring';
 import { useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2"
 import useLocalization from '../../../Context/LocalizationContext/LoclaesContext';
@@ -14,6 +14,7 @@ export default function ResetPassword({ apiLink }) {
         secert: ""
     })
 
+    const [passwordShowToggel, setShowPasswordToggel] = useState(false)
     const { t } = useLocalization()
     const content = (key) => t(`resetPassword.${key}`)
     const [isCorrectAnswer, setIsCorrectAnswer] = useState(false)
@@ -28,6 +29,7 @@ export default function ResetPassword({ apiLink }) {
 
     const checkUserAnswer = async () => {
         try {
+            setErrors({})
             setLoader(true)
             const { email, secert } = userAmswer
             const apiUrl = `${apiLink}ForgetPass?email=${email}&secert=${secert}`;
@@ -48,15 +50,16 @@ export default function ResetPassword({ apiLink }) {
 
     const editPassword = async () => {
         try {
+            setErrors({})
             setLoader(true);
             const apiUrl = `${apiLink}EditUser`;
             const newUserData = { ...userData, password: newPassword }
             setUserData(newUserData)
-            const encodedData = querystring.stringify(userData);
-            const { data } = await axios.put(apiUrl, encodedData, {
+            // const encodedData = querystring.stringify(userData);
+            const { data } = await axios.put(apiUrl, JSON.stringify(userData), {
                 headers: {
-                    // 'Content-Type': 'application/x-www-form-urlenc oded'
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                    // 'Content-Type': 'application/json'
                 }
             })
 
