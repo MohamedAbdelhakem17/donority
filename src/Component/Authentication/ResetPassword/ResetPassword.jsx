@@ -13,8 +13,8 @@ export default function ResetPassword({ apiLink }) {
         email: "",
         secert: ""
     })
-
     const [passwordShowToggel, setShowPasswordToggel] = useState(false)
+
     const { t } = useLocalization()
     const content = (key) => t(`resetPassword.${key}`)
     const [isCorrectAnswer, setIsCorrectAnswer] = useState(false)
@@ -122,7 +122,10 @@ export default function ResetPassword({ apiLink }) {
                             <h6 className='go-back' onClick={() => setIsCorrectAnswer(false)}> <i className={`fa-solid ${content("dir")} px-1`}></i>{content("goBack")} </h6>
                             <div className="input-colaction">
                                 <label htmlFor="password">{content("newPassword")}</label>
-                                <input onChange={(event) => setNewPassword(event.target.value)} type="password" name='password' id='password' className={errors.userEmail && "not-valid"} />
+                                <div className='w-100 position-relative'>
+                                    <input onChange={(event) => setNewPassword(event.target.value)} type={passwordShowToggel ? "text" : "password"} name='password' id='password' className={errors.userEmail && "not-valid"} />
+                                    <i className={`fa-regular fa-${passwordShowToggel ? "eye-slash" : "eye"} toggel-password `} onClick={() => setShowPasswordToggel(!passwordShowToggel)}></i>
+                                </div>
                                 {errors.userEmail && <span className='error'>{errors.userEmail}</span>}
                             </div>
                             <button type='submit' className={loader ? "disabled btn" : "btn"}>{loader ? <i

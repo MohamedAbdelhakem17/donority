@@ -1,5 +1,5 @@
 import React from 'react'
-import icon from "./Donority.png"
+import icon from "./loading.gif"
 
 export default function LoadingScreen() {
   return (

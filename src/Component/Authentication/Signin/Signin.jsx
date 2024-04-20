@@ -20,6 +20,7 @@ export default function Signin({ apiLink }) {
     const [errors, setErrors] = useState({});
 
     const [loader, setLoader] = useState(false);
+    const [passwordShowToggel, setShowPasswordToggel] = useState(false)
 
     const collectUserData = (event) => {
         const user = { ...userData };
@@ -93,7 +94,10 @@ export default function Signin({ apiLink }) {
                         </div>
                         <div className="input-colaction">
                             <label htmlFor="userPassword">{content("password")}</label>
-                            <input onChange={collectUserData} type="password" name='password' id='userPassword' className={errors.userPassword && "not-valid"} />
+                            <div className='w-100 position-relative'>
+                                <input onChange={collectUserData} type={passwordShowToggel ? "text" : "password"} name='password' id='userPassword' className={errors.userPassword && "not-valid"} />
+                                <i className={`fa-regular fa-${passwordShowToggel ? "eye-slash" : "eye"} toggel-password `} onClick={() => setShowPasswordToggel(!passwordShowToggel)}></i>
+                            </div>
                             {errors.userPassword && <span className='error'>{errors.userPassword}</span>}
                         </div>
                         <button type='submit' className={loader ? "disabled btn" : "btn"}>{loader ? <i

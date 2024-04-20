@@ -28,6 +28,8 @@ export default function Signup({ apiLink }) {
 
     const navigateTo = useNavigate()
     const [errors, setErrors] = useState({});
+    const [passwordShowToggel, setShowPasswordToggel] = useState(false)
+    const [passwordConfirmShowToggel, setShowPasswordConfirmToggel] = useState(false)
 
     const [loader, setLoader] = useState(false);
 
@@ -155,14 +157,20 @@ export default function Signup({ apiLink }) {
                         </div>
                         <div className="input-colaction">
                             <label htmlFor="userPassword">{content("password")}</label>
-                            <input onChange={collectUserData} type="password" name='password' id='userPassword'
-                                className={errors.userPassword && "not-valid"} />
+                            <div className='w-100 position-relative'>
+                                <input onChange={collectUserData} type={passwordShowToggel ? "text" : "password"} name='password' id='userPassword'
+                                    className={errors.userPassword && "not-valid"} />
+                                <i className={`fa-regular fa-${passwordShowToggel ? "eye-slash" : "eye"} toggel-password `} onClick={() => setShowPasswordToggel(!passwordShowToggel)}></i>
+                            </div>
                             {errors.userPassword && <span className='error'>{errors.userPassword}</span>}
                         </div>
                         <div className="input-colaction">
                             <label htmlFor="confirmPassword">{content("confirmPassword")}</label>
-                            <input onChange={collectUserData} type="password" name='confirmPassword'
-                                id='confirmPassword' className={errors.confirmPassword && "not-valid"} />
+                            <div className='w-100 position-relative'>
+                                <input onChange={collectUserData} type={passwordConfirmShowToggel ? "text" : "password"} name='confirmPassword'
+                                    id='confirmPassword' className={errors.confirmPassword && "not-valid"} />
+                                <i className={`fa-regular fa-${passwordConfirmShowToggel ? "eye-slash" : "eye"} toggel-password `} onClick={() => setShowPasswordConfirmToggel(!passwordConfirmShowToggel)}></i>
+                            </div>
                             {errors.confirmPassword && <span className='error'>{errors.confirmPassword}</span>}
                         </div>
                         <div className="input-colaction">

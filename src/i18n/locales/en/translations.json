@@ -1,4 +1,13 @@
 {
+  "hero": {
+    "slogan": "Charity Is Priority",
+    "description": {
+      "first": "Giving Help To Those",
+      "last": "Who Neer It."
+    },
+    "donate_now": "Donate Now"
+  },
+
   "signup": {
     "title": "Register",
     "firstName": "First Name *",
@@ -39,5 +48,18 @@
     "setNewPassword": "Set New Password",
     "goBack": "Go back",
     "dir": "fa-caret-left"
+  },
+
+  "error_page": {
+    "title": "Ooops!",
+    "subtitle": "We can't find the page",
+    "message": "The page you're looking for might have been removed or is temporarily unavailable",
+    "footer_title": "Please check your URL or go to...",
+    "links": {
+      "home": "Home",
+      "donations": "Donations",
+      "about": "About",
+      "contact_us": "Contact us"
+    }
   }
 }

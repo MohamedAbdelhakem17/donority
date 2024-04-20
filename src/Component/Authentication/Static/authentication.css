@@ -40,6 +40,7 @@
                 &.not-valid {
                     border: .5px solid red;
                 }
+
             }
 
 
@@ -81,22 +82,49 @@
             }
         }
 
-        @media (max-width: 994px) {
-            & {
-                width: 80%;
-            }
-        }
+        .toggel-password {
+            color: var(--main-color-alt);
+            font-size: 1.2rem;
+            top: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: color var(--main-transition) ease-in-out;
 
-        @media (max-width: 767px) {
-            & {
-                width: 90%;
+            &:hover {
+                color: var(--main-color);
             }
         }
+    }
 
-        @media (max-width: 550px) {
-            & {
-                width: 100%;
-            }
+    @media (max-width: 994px) {
+        & {
+            width: 80%;
         }
+    }
+
+    @media (max-width: 767px) {
+        & {
+            width: 90%;
+        }
+    }
+
+    @media (max-width: 550px) {
+        & {
+            width: 100%;
+        }
+    }
+
+}
+
+html[lang="ar"] {
+    .toggel-password {
+        left: 18px;
+    }
+}
+
+html[lang="en"] {
+    .toggel-password {
+        right: 5px;
     }
 }

@@ -1,56 +1,61 @@
 .error_page {
-    /* height: 98dvb; */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
 
-.error_page .content {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: center;
-}
+    & .content {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
 
-.error_page .content h3 {
-    color: var(--main-color);
-    font-size: 5rem;
-}
+        & h3 {
+            color: var(--main-color);
+            font-size: 5rem;
+        }
 
-.error_page .content h4 {
-    color: var(--main-color);
-    font-size: 3.5rem;
-    line-height: 1.4;
-}
+        & h4 {
+            color: var(--main-color);
+            font-size: 3.5rem;
+            line-height: 1.4;
+        }
 
-.error_page .content p {
-    color: #696969;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
+        & p {
+            color: #696969;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+    }
 
+    & .foot_content {
+        padding-top: 35px;
 
-.error_page .foot_content {
-    padding-top: 35px;
-}
+        & h3 {
+            color: var(--main-color);
+            font-size: 2rem;
+            text-align: center;
+        }
 
-.foot_content h3 {
-    color: var(--main-color);
-    font-size: 2rem;
-    text-align: center;
-}
+        & .links {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 2rem;
 
-.foot_content .links {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top: 2rem;
-}
+            & li .link {
+                font-size: 1.5rem;
+                color: var(--main-color);
+                font-weight: 600;
+                text-decoration: none;
+                transition: all var(--main-transition) linear;
 
-.foot_content .links li .link {
-    font-size: 1.5rem;
-    color: var(--main-color);
-    font-weight: 600;
-    text-decoration: none;
+                &:hover {
+                    transform: scale(.9)
+                }
+            }
+        }
+
+    }
+
 }
