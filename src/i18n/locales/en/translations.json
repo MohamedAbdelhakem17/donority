@@ -9,7 +9,7 @@
     "donations_type": {
       "food": "Food ",
       "clothes": "Clothes ",
-      "money": "Money ",
+      "tools": "Tools ",
       "furniture": "Furniture"
     },
     "donate_now": "Donate Now",
@@ -20,7 +20,7 @@
     "title": "Donation",
     "food": "Food",
     "clothes": "Clothes",
-    "money": "Money",
+    "tools": "Tools",
     "furniture": "Furniture"
   },
 

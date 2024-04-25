@@ -9,7 +9,7 @@
     "donations_type": {
       "food": "الطعام ",
       "clothes": "الملابس ",
-      "money": "المال ",
+      "tools": "الادوات",
       "furniture": "الاثاث"
     },
     "donate_now": "تبرع الان",
@@ -20,7 +20,7 @@
     "title": "الـتـبـرعـات",
     "food": "الطعام",
     "clothes": "الملابس",
-    "money": "المال",
+    "tools": "الادوات",
     "furniture": "الاثاث"
   },
 

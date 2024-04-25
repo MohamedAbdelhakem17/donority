@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import moneyImg from "./donationsType/money.jpg"
+import toolImg from "./donationsType/tools.jpg"
 import foodImg from "./donationsType/food.jpg"
 import furnitureImg from "./donationsType/furniture.jpg"
 import clothesImg from "./donationsType/Clothes.jpg"
 import useLocalization from '../../../../Context/LocalizationContext/LoclaesContext'
+import { Link } from 'react-router-dom'
 export default function Donations() {
   const { t } = useLocalization()
-  const content=(key)=> t(`donation.${key}`)
+  const content = (key) => t(`donation.${key}`)
   const donations = [
     {
       id: "1",
@@ -20,8 +21,8 @@ export default function Donations() {
     },
     {
       id: "3",
-      type: content("money"),
-      img: moneyImg
+      type: content("tools"),
+      img: toolImg
     },
     {
       id: "4",
@@ -38,10 +39,12 @@ export default function Donations() {
           <div className="row">
             {donations.map(({ type, img }, index) => (
               <div className={"col-12 col-lg-3 col-md-6 p-3"} key={index} data-aos="fade-up" data-aos-duration="500" data-aos-delay="300" data-aos-offset="150">
-                <div className="inner rounded rondeed-2 bg-danger ">
-                  <img src={img} alt={type} />
-                  <h2>{type}</h2>
-                </div>
+                <Link to={`/donaitontype/${type}`}>
+                  <div className="inner rounded rondeed-2 bg-danger ">
+                    <img src={img} alt={type} />
+                    <h2>{type}</h2>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
