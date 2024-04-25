@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from '../../../Context/AuthContext/AuthContext';
 import "../Static/authentication.css"
 import useLocalization from '../../../Context/LocalizationContext/LoclaesContext';
@@ -10,6 +10,7 @@ export default function Signin({ apiLink }) {
         email: "",
         password: "",
     });
+
     const { t } = useLocalization()
     const content = (key) => t(`signin.${key}`)
 
@@ -98,11 +99,14 @@ export default function Signin({ apiLink }) {
                                 <input onChange={collectUserData} type={passwordShowToggel ? "text" : "password"} name='password' id='userPassword' className={errors.userPassword && "not-valid"} />
                                 <i className={`fa-regular fa-${passwordShowToggel ? "eye-slash" : "eye"} toggel-password `} onClick={() => setShowPasswordToggel(!passwordShowToggel)}></i>
                             </div>
+                            <Link to={"/reset-password"} className="link-form">{content("forget_password")}</Link>
                             {errors.userPassword && <span className='error'>{errors.userPassword}</span>}
                         </div>
                         <button type='submit' className={loader ? "disabled btn" : "btn"}>{loader ? <i
-                            className="fa-solid fa-spinner fa-spin"></i> : content("button")}</button> {errors.all && <span
-                                className='error text-center d-block '>{errors.all}</span>}
+                            className="fa-solid fa-spinner fa-spin"></i> : content("button")}</button>
+                            <p className='text-muted h5'> {content("new_account")}<Link to={"/signup"} className="link-form">{content("register")}</Link></p>
+                        {errors.all && <span
+                            className='error text-center d-block '>{errors.all}</span>}
                     </form>
                 </div>
             </section>

@@ -5,7 +5,39 @@
       "first": "Giving Help To Those",
       "last": "Who Neer It."
     },
-    "donate_now": "Donate Now"
+    "donations": "You can Donate",
+    "donations_type": {
+      "food": "Food ",
+      "clothes": "Clothes ",
+      "money": "Money ",
+      "furniture": "Furniture"
+    },
+    "donate_now": "Donate Now",
+    "isNeed": "Is Need"
+  },
+  
+  "donation": {
+    "title": "Donation",
+    "food": "Food",
+    "clothes": "Clothes",
+    "money": "Money",
+    "furniture": "Furniture"
+  },
+
+  "downloed_app": {
+    "download": "Download",
+    "title": "Our New App",
+    "description": "Donority",
+    "install_text": {
+      "headline": "install hope, kindness, and change With",
+      "subheadline": "every download of the donate app.",
+      "call_to_action": "Tohether, we can a difference,",
+      "footer": "one tap at a time ."
+    },
+    "button": {
+      "title": "Download on the",
+      "phone_type": "Android"
+    }
   },
 
   "signup": {
@@ -36,7 +68,10 @@
     "login": "Log in",
     "email": "Email *",
     "password": "Password *",
-    "button": "Log in"
+    "button": "Log in",
+    "forget_password": "Forget Password ?",
+    "new_account": "Don't have an Account",
+    "register": "Register"
   },
 
   "resetPassword": {

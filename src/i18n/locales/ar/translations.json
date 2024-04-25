@@ -5,7 +5,39 @@
       "first": "تقديم المساعدة لأولئك",
       "last": "الذين يحتاجونها"
     },
-    "donate_now": "تبرع الان"
+    "donations": "يمكنك التبرع بـ",
+    "donations_type": {
+      "food": "الطعام ",
+      "clothes": "الملابس ",
+      "money": "المال ",
+      "furniture": "الاثاث"
+    },
+    "donate_now": "تبرع الان",
+    "isNeed": "محتاج"
+  },
+
+  "donation": {
+    "title": "الـتـبـرعـات",
+    "food": "الطعام",
+    "clothes": "الملابس",
+    "money": "المال",
+    "furniture": "الاثاث"
+  },
+
+  "downloed_app": {
+    "download": "تحميل",
+    "title": "تطبيقنا الجديد",
+    "description": "Donority",
+    "install_text": {
+      "headline": "قم بتثبيت الأمل واللطف والتغيير مع",
+      "subheadline": "كل تحميل لتطبيق التبرع.",
+      "call_to_action": "معًا، يمكننا تحقيق الفارق،",
+      "footer": "ضغطة واحدة في كل مرة."
+    },
+    "button": {
+      "title": "تحميل على",
+      "phone_type": "أندرويد"
+    }
   },
 
   "signup": {
@@ -36,7 +68,10 @@
     "login": "تسجيل الدخول",
     "email": "البريد الإلكتروني *",
     "password": "كلمة المرور *",
-    "button": "تسجيل الدخول"
+    "button": "تسجيل الدخول",
+    "forget_password": "هل نسيت كلمةالمرور ؟",
+    "new_account": "ليس لديك حساب ؟",
+    "register": "تسجيل"
   },
 
   "resetPassword": {
