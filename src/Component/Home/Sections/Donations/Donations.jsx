@@ -3,11 +3,10 @@ import toolImg from "./donationsType/tools.jpg"
 import foodImg from "./donationsType/food.jpg"
 import furnitureImg from "./donationsType/furniture.jpg"
 import clothesImg from "./donationsType/Clothes.jpg"
-import useLocalization from '../../../../Context/LocalizationContext/LoclaesContext'
 import { Link } from 'react-router-dom'
+import useContent from '../../../../utilities/ChangeLanguage'
 export default function Donations() {
-  const { t } = useLocalization()
-  const content = (key) => t(`donation.${key}`)
+  const content = useContent("donation")
   const donations = [
     {
       id: "1",

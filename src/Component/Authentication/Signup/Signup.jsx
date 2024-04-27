@@ -4,7 +4,7 @@ import axios from 'axios'
 import querystring from 'querystring';
 import { useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2"
-import useLocalization from '../../../Context/LocalizationContext/LoclaesContext';
+import useContent from '../../../utilities/ChangeLanguage';
 
 export default function Signup({ apiLink }) {
     const [userData, setUserData] = useState({
@@ -18,13 +18,10 @@ export default function Signup({ apiLink }) {
         last_name: null,
         email: "",
         image_path: null,
-        location_lat: null,
-        location_long: null,
         id_number: null,
         attachments_path: null
     });
-    const { t } = useLocalization()
-    const content = (key) => t(`signup.${key}`)
+    const content = useContent("signup")
 
     const navigateTo = useNavigate()
     const [errors, setErrors] = useState({});

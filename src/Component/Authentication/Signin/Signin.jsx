@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from '../../../Context/AuthContext/AuthContext';
 import "../Static/authentication.css"
-import useLocalization from '../../../Context/LocalizationContext/LoclaesContext';
+import useContent from '../../../utilities/ChangeLanguage';
 
 export default function Signin({ apiLink }) {
     const [userData, setUserData] = useState({
@@ -11,8 +11,8 @@ export default function Signin({ apiLink }) {
         password: "",
     });
 
-    const { t } = useLocalization()
-    const content = (key) => t(`signin.${key}`)
+    const content = useContent("signin")
+
 
     const navigatTo = useNavigate()
 
@@ -104,7 +104,7 @@ export default function Signin({ apiLink }) {
                         </div>
                         <button type='submit' className={loader ? "disabled btn" : "btn"}>{loader ? <i
                             className="fa-solid fa-spinner fa-spin"></i> : content("button")}</button>
-                            <p className='text-muted h5'> {content("new_account")}<Link to={"/signup"} className="link-form">{content("register")}</Link></p>
+                        <p className='text-muted h5'> {content("new_account")}<Link to={"/signup"} className="link-form">{content("register")}</Link></p>
                         {errors.all && <span
                             className='error text-center d-block '>{errors.all}</span>}
                     </form>

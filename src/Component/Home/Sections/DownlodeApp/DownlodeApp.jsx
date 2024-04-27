@@ -2,11 +2,10 @@ import React from 'react'
 import phoneImage from "./phone.png"
 import "./downloade-app.css"
 import android from "./android.svg"
-import useLocalization from '../../../../Context/LocalizationContext/LoclaesContext'
+import useContent from '../../../../utilities/ChangeLanguage'
 
 export default function DownlodeApp() {
-    const { t } = useLocalization()
-    const content = (key) => t(`downloed_app.${key}`)
+    const content = useContent("downloed_app")
     return (
         <>
             <section className="download-app bg-light py-3">
@@ -23,7 +22,7 @@ export default function DownlodeApp() {
                             </p>
 
                             <a className="button" href={phoneImage} download>
-                                <img src={android} alt="android Icon" srcset="" />
+                                <img src={android} alt="android Icon" />
                                 <p>{content("button.title")} <br /> <span>{content("button.phone_type")}</span></p>
                             </a>
                         </div>

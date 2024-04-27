@@ -1,17 +1,17 @@
 import React, { useEffect, useRef } from 'react'
 import Typed from 'typed.js';
-import useLocalization from '../../../../Context/LocalizationContext/LoclaesContext';
 import { Link } from "react-router-dom";
+import useContent from '../../../../utilities/ChangeLanguage';
+import useLocalization from '../../../../Context/LocalizationContext/LoclaesContext';
 
 
 export default function Hero() {
   const el = useRef(null);
-  const { t, language } = useLocalization()
-  const content = (key) => t(`hero.${key}`)
-
+  const content = useContent("hero")
+  const {language} =useLocalization()
   useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: [content("donations_type.food"), content("donations_type.clothes"), content("donations_type.money"), content("donations_type.furniture")],
+      strings: [content("donations_type.food"), content("donations_type.clothes"), content("donations_type.tools"), content("donations_type.furniture")],
       typeSpeed: 150,
       loop: true
     });
@@ -24,9 +24,6 @@ export default function Hero() {
       <section className='hero'>
         <div className="container">
           <div className="content" data-aos="fade-right" data-aos-duration="500" >
-            <Link className='btn btn-dark m-2' to="/signin">signin</Link>
-            <Link className='btn btn-dark m-2' to="/signup">signup</Link>
-            <Link className='btn btn-dark m-2' to="/reset-password">password</Link>
             <h2 className='slogen'>{content("slogan")}</h2>
             <h3>{content("description.first")}<br />{content("description.last")}</h3>
             <p className='h3'>{content("donations")} <br className='d-md-none d-block'/> <span ref={el} /></p>

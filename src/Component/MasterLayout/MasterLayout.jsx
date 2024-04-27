@@ -6,17 +6,14 @@ import Navbar from '../Navbar/Navbar';
 export default function MasterLayout() {
   const [loading, setLoading] = useState(true);
 
-  const handleDOMContentLoaded = () => {
-    setLoading(false);
-  };
-
   useEffect(() => {
-    document.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
-    handleDOMContentLoaded();
+    setLoading(false)
   }, []);
 
-  return loading ? <LoadingScreen /> : <>
-    <Navbar />
-    <Outlet />
-  </>;
+  return loading ? <LoadingScreen /> : (
+    <>
+      <Navbar />
+      <Outlet />
+    </>
+  );
 }

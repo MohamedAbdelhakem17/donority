@@ -2,10 +2,10 @@ import React from 'react'
 import notFoundImg from "./404.png"
 import "./notFound.css"
 import { Link } from 'react-router-dom'
-import useLocalization from '../../Context/LocalizationContext/LoclaesContext'
+import useContent from '../../utilities/ChangeLanguage';
+
 export default function NotFound() {
-    const { t } = useLocalization()
-    const content = (key) => t(`error_page.${key}`)
+    const content = useContent("error_page")
     return (
         <>
             <section className="error_page">
