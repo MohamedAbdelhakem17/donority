@@ -168,3 +168,14 @@
         transform: scale(1);
     }
 }
+
+#language {
+    word-wrap: normal;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+    color: var(--main-color);
+    font-weight: 700;
+    cursor: pointer;
+    outline-color: var(--main-color);
+}

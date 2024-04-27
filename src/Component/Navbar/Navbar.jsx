@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./navbar.css";
 import logo from "./logo.png";
 import useLocalization from "../../Context/LocalizationContext/LoclaesContext";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
     const { changeLanguage } = useLocalization();
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
     const [isNavbarActive, setIsNavbarActive] = useState(false);
+    const [isHomePage, setIsHomePage] = useState(true)
+    const [isActive, setIsActive] = useState(false)
+    const location = useLocation();
 
     const openNavbar = () => {
         setIsNavbarOpen(true);
@@ -19,21 +22,32 @@ export default function Navbar() {
 
     const changeNavbarBackground = () => {
         const offsetTop = window.pageYOffset || document.documentElement.scrollTop;
-        setIsNavbarActive(offsetTop > 100);
+        setIsActive(offsetTop > 100)
+        setIsNavbarActive(isActive && isHomePage);
     };
 
     useEffect(() => {
+        const isHomePage = location.pathname === "/";
+        setIsHomePage(isHomePage)
         window.addEventListener("scroll", changeNavbarBackground);
         return () => {
             window.removeEventListener("scroll", changeNavbarBackground);
         };
-    }, []);
+
+    }, [location, isActive]);
+
+    const handleChangeLanguage = (event) => {
+        const languageSelect = event.target.value;
+        changeLanguage(languageSelect)
+    }
+
+
 
     return (
-        <nav id="navbar" className={`navbar ${isNavbarActive ? 'active' : ''}`}>
+        <nav id="navbar" className={`navbar ${isNavbarActive && isHomePage ? 'active' : !isHomePage ? "active" :''}`}>
             <div className="container-fluid">
                 <div className="brand">
-                    <Link to="/">
+                    <Link onClick={closeNavbar} to="/">
                         <img src={logo} alt="Donoirty Logo" />
                     </Link>
                 </div>
@@ -46,31 +60,32 @@ export default function Navbar() {
                             <i onClick={closeNavbar} className="fa-regular fa-circle-xmark"></i>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" id="index" to={"/"}>
+                            <Link onClick={closeNavbar} className="nav-link" id="index" to={"/"}>
                                 Home
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to={"/donaitontype/food"}>
+                            <Link onClick={closeNavbar} className="nav-link" to={"/donaitontype/food"}>
                                 Donation
                             </Link>
                         </li>
+                        <li className="nav-item">
+                            <Link onClick={closeNavbar} className="nav-link" to={"/needs"}>
+                                Needs
+                            </Link>
+                        </li>
                         <div className="actions d-flex">
-                            <Link to={"/signup"} className="nav-link active mx-2">
+                            <Link onClick={closeNavbar} to={"/signup"} className="nav-link active mx-2">
                                 Signup
                             </Link>
-                            <Link to={"/signin"} className="nav-link active mx-2">
+                            <Link onClick={closeNavbar} to={"/signin"} className="nav-link active mx-2">
                                 Signin
                             </Link>
                         </div>
-                        <div className="language">
-                            <button className="btn btn-danger mx-5" onClick={() => changeLanguage("ar")}>
-                                ar
-                            </button>
-                            <button className="btn btn-danger" onClick={() => changeLanguage("en")}>
-                                en
-                            </button>
-                        </div>
+                        <select name="language" id="language" onChange={handleChangeLanguage}>
+                            <option value="en">En</option>
+                            <option value="ar">Ar</option>
+                        </select>
                     </ul>
                 </div>
             </div>
