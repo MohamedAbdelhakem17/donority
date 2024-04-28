@@ -82,7 +82,7 @@ export default function Signin({ apiLink }) {
 
     return (
         <>
-            <section className='login'>
+            <section className='login main-padding-top'>
                 <div className="main-title">
                     <h2>{content("login")}</h2>
                 </div>

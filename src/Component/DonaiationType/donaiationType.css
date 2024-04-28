@@ -1,0 +1,19 @@
+.donaiation-type {
+    & .options {
+        & .option {
+            font-size: 1.2rem;
+            color: var(--main-color);
+            font-weight: 500;
+            padding: 2px 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all var(--main-transitn) ease-in-out;
+
+            &.active,
+            &:hover {
+                background-color: var(--main-color);
+                color: white;
+            }
+        }
+    }
+}

@@ -90,7 +90,7 @@ export default function ResetPassword({ apiLink }) {
 
     return (
         <>
-            <section className='login'>
+            <section className='reset-password main-padding-top'>
                 <div className="main-title">
                     <h2>{content("mainTitle")}</h2>
                 </div>

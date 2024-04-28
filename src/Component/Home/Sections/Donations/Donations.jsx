@@ -38,7 +38,7 @@ export default function Donations() {
           <div className="row">
             {donations.map(({ type, img }, index) => (
               <div className={"col-12 col-lg-3 col-md-6 p-3"} key={index} data-aos="fade-up" data-aos-duration="500" data-aos-delay="300" data-aos-offset="150">
-                <Link to={`/donaitontype/${type}`}>
+                <Link to={`/donaiton/${type.toLowerCase()}`}>
                   <div className="inner rounded rondeed-2 bg-danger ">
                     <img src={img} alt={type} />
                     <h2>{type}</h2>

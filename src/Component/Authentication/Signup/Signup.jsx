@@ -128,7 +128,7 @@ export default function Signup({ apiLink }) {
 
     return (
         <>
-            <section className='signup'>
+            <section className='signup main-padding-top'>
                 <div className="main-title">
                     <h2>{content("title")}</h2>
                 </div>

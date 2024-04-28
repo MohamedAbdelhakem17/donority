@@ -23,9 +23,8 @@ export default function NotFound() {
                             <h3>{content("footer_title")}</h3>
                             <ul className="links">
                                 <li><Link to={"/"} className='link'>{content("links.home")}</Link></li>
-                                <li><Link to={"/"} className='link'>{content("links.donations")}</Link></li>
-                                <li><Link to={"/"} className='link'>{content("links.about")}</Link></li>
-                                <li><Link to={"/"} className='link'>{content("links.contact_us")}</Link></li>
+                                <li><Link to={"/donaiton/food"} className='link'>{content("links.donations")}</Link></li>
+                                <li><Link to={"/in-need"} className='link'>{content("links.need")}</Link></li>
                             </ul>
                         </div>
                     </div>

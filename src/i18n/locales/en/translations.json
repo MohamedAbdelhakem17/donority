@@ -1,4 +1,21 @@
 {
+  "navbar": {
+    "home": "Home",
+    "donations": "Donations",
+    "needs": "Needs",
+    "signup": "Signup",
+    "signin": "Signin",
+    "userProfile": "User Profile",
+    "addDonation": "Add Donation",
+    "addNeeds": "Add Needs",
+    "showRequest": "Show Request",
+    "logout": "Log Out",
+    "language": {
+      "en": "English",
+      "ar": "Arabic"
+    }
+  },
+
   "hero": {
     "slogan": "Charity Is Priority",
     "description": {
@@ -15,7 +32,7 @@
     "donate_now": "Donate Now",
     "isNeed": "Is Need"
   },
-  
+
   "donation": {
     "title": "Donation",
     "food": "Food",
@@ -93,7 +110,7 @@
     "links": {
       "home": "Home",
       "donations": "Donations",
-      "about": "About",
+      "need": "Needs",
       "contact_us": "Contact us"
     }
   }

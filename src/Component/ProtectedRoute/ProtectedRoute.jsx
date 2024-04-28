@@ -3,10 +3,22 @@ import { Navigate } from "react-router-dom";
 import useAuth from "../../Context/AuthContext/AuthContext";
 
 export default function ProtectedRoute({ children }) {
-  const { isloggedIn } = useAuth()
+  const { isloggedIn } = useAuth();
+  const childName = children.type.name
+
   if (isloggedIn) {
-    return <  Navigate to="/" />;
+    const allowedRoutes = ["UserProfile", "UserRequest", "InNeed", "AddDonaiation"];
+    if (allowedRoutes.includes(childName)) {
+      return children;
+    } else {
+      return <Navigate to="/" />;
+    }
   } else {
-    return children;
+    const restrictedRoutes = ["Signin", "Signup", "ResetPassword"];
+    if (restrictedRoutes.includes(childName)) {
+      return children;
+    } else {
+      return <Navigate to="/" />;
+    }
   }
 }

@@ -62,5 +62,165 @@
       "id": "4",
       "type": "Furniture"
     }
-  ]
+  ],
+
+    "food": [
+      {
+        "type": "Canned goods",
+        "quantity": 100,
+        "expiration_date": "2024-06-30",
+        "brand": "Campbell's",
+        "origin": "USA",
+        "image_url": "https://example.com/canned_goods.jpg"
+      },
+      {
+        "type": "Dry pasta",
+        "quantity": 50,
+        "expiration_date": "2025-01-31",
+        "brand": "Barilla",
+        "origin": "Italy",
+        "image_url": "https://example.com/dry_pasta.jpg"
+      },
+      {
+        "type": "Rice",
+        "quantity": 80,
+        "expiration_date": "2025-04-30",
+        "brand": "Uncle Ben's",
+        "origin": "USA",
+        "image_url": "https://example.com/rice.jpg"
+      },
+      {
+        "type": "Cereal",
+        "quantity": 40,
+        "expiration_date": "2024-09-30",
+        "brand": "Kellogg's",
+        "origin": "USA",
+        "image_url": "https://example.com/cereal.jpg"
+      },
+      {
+        "type": "Canned soup",
+        "quantity": 70,
+        "expiration_date": "2024-08-31",
+        "brand": "Progresso",
+        "origin": "USA",
+        "image_url": "https://example.com/canned_soup.jpg"
+      }
+    ],
+    "clothes": [
+      {
+        "type": "Winter coats",
+        "quantity": 50,
+        "condition": "New",
+        "size": "Large",
+        "color": "Black",
+        "image_url": "https://example.com/winter_coats.jpg"
+      },
+      {
+        "type": "T-shirts",
+        "quantity": 100,
+        "condition": "Used",
+        "size": "Medium",
+        "color": "Various",
+        "image_url": "https://example.com/t_shirts.jpg"
+      },
+      {
+        "type": "Sweaters",
+        "quantity": 80,
+        "condition": "Good",
+        "size": "Small",
+        "color": "Blue",
+        "image_url": "https://example.com/sweaters.jpg"
+      },
+      {
+        "type": "Jeans",
+        "quantity": 70,
+        "condition": "Like new",
+        "size": "32x32",
+        "color": "Denim",
+        "image_url": "https://example.com/jeans.jpg"
+      },
+      {
+        "type": "Dresses",
+        "quantity": 60,
+        "condition": "Excellent",
+        "size": "Medium",
+        "color": "Red",
+        "image_url": "https://example.com/dresses.jpg"
+      }
+    ],
+    "tools": [
+      {
+        "type": "Hand tools",
+        "quantity": 20,
+        "brand": "Stanley",
+        "condition": "New",
+        "image_url": "https://example.com/hand_tools.jpg"
+      },
+      {
+        "type": "Power drills",
+        "quantity": 10,
+        "brand": "DeWalt",
+        "condition": "Like new",
+        "image_url": "https://example.com/power_drills.jpg"
+      },
+      {
+        "type": "Hammers",
+        "quantity": 30,
+        "brand": "Craftsman",
+        "condition": "Good",
+        "image_url": "https://example.com/hammers.jpg"
+      },
+      {
+        "type": "Screwdrivers",
+        "quantity": 40,
+        "brand": "Klein Tools",
+        "condition": "Used",
+        "image_url": "https://example.com/screwdrivers.jpg"
+      },
+      {
+        "type": "Wrenches",
+        "quantity": 25,
+        "brand": "Milwaukee",
+        "condition": "Fair",
+        "image_url": "https://example.com/wrenches.jpg"
+      }
+    ],
+    "furniture": [
+      {
+        "type": "Tables and chairs",
+        "quantity": 10,
+        "material": "Wood",
+        "condition": "New",
+        "image_url": "https://example.com/tables_and_chairs.jpg"
+      },
+      {
+        "type": "Sofas",
+        "quantity": 5,
+        "material": "Fabric",
+        "condition": "Used",
+        "image_url": "https://example.com/sofas.jpg"
+      },
+      {
+        "type": "Beds",
+        "quantity": 8,
+        "material": "Metal",
+        "condition": "Like new",
+        "image_url": "https://example.com/beds.jpg"
+      },
+      {
+        "type": "Desks",
+        "quantity": 12,
+        "material": "Particleboard",
+        "condition": "Fair",
+        "image_url": "https://example.com/desks.jpg"
+      },
+      {
+        "type": "Bookshelves",
+        "quantity": 7,
+        "material": "Laminate",
+        "condition": "Good",
+        "image_url": "https://example.com/bookshelves.jpg"
+      }
+    ]
+  
 }
