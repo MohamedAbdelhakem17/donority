@@ -2,6 +2,10 @@ import React from 'react'
 
 export default function InNeed() {
     return (
-        <div className='fw-bold bg-danger text-center h1 text-white main-padding-top' > In Need</div >
-    )
+        <section className='in-need main-padding-top '>
+            <div className="main-title">
+                {/* <h2>{content("login")}</h2> */}
+                <h2>Add Needs</h2>
+            </div>
+        </section>)
 }

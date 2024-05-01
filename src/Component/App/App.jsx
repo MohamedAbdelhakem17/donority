@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       { path: "/user-profile", element: <ProtectedRoute ><UserProfile apiLink={Base_API_URL} /></ProtectedRoute> },
       { path: "/user-request", element: <ProtectedRoute ><UserRequest apiLink={Base_API_URL} /></ProtectedRoute> },
       { path: "/in-need", element: <ProtectedRoute ><InNeed apiLink={Base_API_URL} /></ProtectedRoute> },
-      { path: "/add-donaiation", element: <ProtectedRoute ><AddDonaiation /></ProtectedRoute> },
+      { path: "/add-donaiation", element: <ProtectedRoute ><AddDonaiation apiLink={Base_API_URL}/></ProtectedRoute> },
     ]
   }
 ]);

@@ -2,6 +2,10 @@ import React from 'react'
 
 export default function UserRequest() {
   return (
-    <div className='fw-bold bg-danger text-center h1 text-white main-padding-top'>User Request</div>
-  )
+    <section className='user-request main-padding-top '>
+      <div className="main-title">
+        {/* <h2>{content("login")}</h2> */}
+        <h2>Show Request</h2>
+      </div>
+    </section>)
 }

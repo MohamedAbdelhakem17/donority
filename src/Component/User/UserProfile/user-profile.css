@@ -1,0 +1,77 @@
+.user-profile {
+    & .input-colaction {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+
+        & label {
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding: 5px;
+            color: var(--main-color);
+        }
+
+        & input {
+            padding: 3px 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            background: transparent;
+            outline: none;
+
+
+            &.active {
+                background-color: white;
+                border: 1px solid var(--main-color);
+                border-radius: 10px;
+                padding: 10px 15px;
+                color: var(--main-color);
+            }
+        }
+    }
+
+
+    & .img {
+        text-align: center;
+        position: relative;
+
+        & img {
+            width: 75%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+        }
+
+        & .edit {
+            color: var(--main-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+
+            & label {
+                cursor: pointer;
+            }
+
+            & input {
+                display: none;
+            }
+        }
+    }
+
+    span.text {
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 700;
+        padding: 5px 10px;
+    }
+
+    @media (max-width:767px) {
+        & .img {
+            order: 1 !important;
+        }
+
+        & .data {
+            order: 2;
+        }
+    }
+}
