@@ -4,8 +4,8 @@ import axios from 'axios'
 import querystring from 'querystring';
 import "../user.css"
 import useAuth from "../../../Context/AuthContext/AuthContext";
-// import { useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2"
+// import uploadImageToDatabase from "../../../utilities/uploadImageToDatabase";
 // import useContent from '../../../utilities/ChangeLanguage';
 
 export default function AddDonaiation({ apiLink }) {
@@ -48,21 +48,6 @@ export default function AddDonaiation({ apiLink }) {
         setDonationData(dataItem)
     }
 
-    const uploadImageToDatabase = async () => {
-        const formData = new FormData();
-        const img = imageFile.current.files[0];
-        formData.append("", img)
-        let url = `${apiLink}/uploadPic`;
-        let { data } = await axios.post(url, formData, {
-            headers: { "Content-Type": "multipart/form-data" },
-        });
-        if (data.Code === 200) {
-            return data.fileName
-        } else {
-            return false
-        }
-    }
-
     const sendDataToDatabase = async (pathImage) => {
         try {
             const item = { ...donationData, pub_date: pubDate, image_path: pathImage }
@@ -74,6 +59,7 @@ export default function AddDonaiation({ apiLink }) {
                 }
             })
             const { Code, Message } = data;
+            console.log({data})
             if (Code === 200) {
                 Swal.fire({
                     position: "center",
@@ -91,10 +77,25 @@ export default function AddDonaiation({ apiLink }) {
         }
     }
 
+    const uploadImageToDatabase = async () => {
+        const formData = new FormData();
+        const img = imageFile.current.files[0];
+        formData.append("", img)
+        let url = `${apiLink}/uploadPic`;
+        let { data } = await axios.post(url, formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+        });
+        if (data.Code === 200) {
+            return data.fileName
+        } else {
+            return false
+        }
+    }
+
     const handelFormSubmit = async (event) => {
         setLoader(true);
         event.preventDefault();
-        const imagePath = await uploadImageToDatabase()
+        const imagePath = await uploadImageToDatabase(apiLink, imageFile)
         imagePath && sendDataToDatabase(imagePath)
         setLoader(false);
     }
@@ -181,19 +182,6 @@ export default function AddDonaiation({ apiLink }) {
                             className="fa-solid fa-spinner fa-spin"></i> : "Add"}</button>
                     </form>
                 </div>
-
-                {/* {
-  "category_id": 2.0,
-  "title": "sample string 3",
-  "image_path": "sample string 4",
-  "quantity": 1,
-  "weight": 1,
-  "description": "sample string 5",
-  "pub_date": "2024-04-29T19:39:28.4997353+02:00",
-  "expiry_date": "2024-04-29T19:39:28.4997353+02:00",
-  "active": true,
-  "user_id": 6
-} */}
             </section>
         </>
     )
