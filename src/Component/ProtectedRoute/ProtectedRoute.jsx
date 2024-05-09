@@ -7,7 +7,7 @@ export default function ProtectedRoute({ children }) {
   const childName = children.type.name
 
   if (isloggedIn) {
-    const allowedRoutes = ["UserProfile", "UserRequest", "InNeed", "AddDonaiation"];
+    const allowedRoutes = ["UserProfile", "UserRequest", "InNeed", "AddDonaiation", "UserDonation"];
     if (allowedRoutes.includes(childName)) {
       return children;
     } else {

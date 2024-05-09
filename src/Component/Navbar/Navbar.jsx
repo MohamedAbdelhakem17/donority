@@ -85,7 +85,7 @@ export default function Navbar() {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link onClick={closeNavbar} className="nav-link" to={"/needs"}>
+                                <Link onClick={closeNavbar} className="nav-link" to={"/needs/food"}>
                                     {content("needs")}
                                 </Link>
                             </li>
@@ -121,6 +121,9 @@ export default function Navbar() {
                                     </li>
                                     <li className="menu-item">
                                         <Link className="menu-link" to={"/add-donaiation"} onClick={() => setOpenMenu(!openMenu)}>{content("addDonation")}</Link>
+                                    </li>
+                                    <li className="menu-item">
+                                        <Link className="menu-link" to={"/user-donaiation"} onClick={() => setOpenMenu(!openMenu)}>Your  Donation</Link>
                                     </li>
                                     <li className="menu-item">
                                         <Link className="menu-link" to={"/in-need"} onClick={() => setOpenMenu(!openMenu)}>{content("addNeeds")}</Link>

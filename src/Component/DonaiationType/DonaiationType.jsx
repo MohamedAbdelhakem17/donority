@@ -4,6 +4,7 @@ import "./donaiationType.css"
 import useContent from '../../utilities/ChangeLanguage'
 import placholder from "./placholder.jpg"
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export default function DonaiationType({ apiLink }) {
     const { type } = useParams()
@@ -11,6 +12,8 @@ export default function DonaiationType({ apiLink }) {
     const [donation, setDonation] = useState([])
     const content = useContent("donation")
     const navigate = useNavigate();
+    const imageLink = "https://api.donority.site/images/"
+
     let donationId
 
     if (type === "food")
@@ -23,24 +26,69 @@ export default function DonaiationType({ apiLink }) {
         donationId = 3
 
 
-
-
     const handleOptionClick = (type) => {
         setActive(type);
         navigate(`/donaiton/${type}`);
     };
 
     const getDonation = async (id) => {
-        const apiUrl = `${apiLink}GetDonations?cat_id=${id}`
-        const { data } = await axios(apiUrl)
-        const { Code, data: dataRespons } = data
-        if (Code === 200)
-            setDonation(dataRespons)
-        else
-            setDonation([])
+        try {
+            const apiUrl = `${apiLink}GetDonations?cat_id=${id}`
+            const { data } = await axios(apiUrl)
+            const { Code, data: dataRespons } = data
+            if (Code === 200)
+                setDonation(dataRespons)
+            else
+                setDonation([])
 
-        console.log(data.data)
+            console.log(data.data)
+        } catch (error) {
+            console.log(error)
+        }
     }
+
+    const orderDonation = async (id) => {
+        try {
+            const apiUrl = `${apiLink}ReserveDonation?ID=${id}`;
+            const { data } = await axios(apiUrl);
+            const { Code, Message, data: responseData } = data;
+            console.log(data);
+            if (Code === 200) {
+                Swal.fire({
+                    title: "Success",
+                    text: Message,
+                    icon: "success",
+                    showCancelButton: false,
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "Show Owner Info"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            html: `
+                                <div class='userinfo'>
+                                <h5 class="alert alert-danger p-1 m-0 mb-2">Please remember to save this information,it Will be lost.</h5>
+                                    <h6 class='title'>Name</h6>
+                                    <p> ${responseData.OwnerDetails.firstname} ${responseData.OwnerDetails.lasrname}</p>
+                                    <h6 class='title'>Address</h6>
+                                    <p> ${responseData.OwnerDetails.adress}</p>
+                                    <h6 class='title'>Email</h6>
+                                    <p>${responseData.OwnerDetails.email}</p>
+                                    <h6 class='title'>Phone</h6>
+                                    <p>${responseData.OwnerDetails.phonenumber}</p>
+                                </div>
+                            `,
+                            confirmButtonColor: "#3085d6",
+
+                        });
+                    }
+                });
+                // Assuming donationId is defined somewhere, pass it to getDonation function
+                getDonation(donationId);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     useEffect(() => {
         getDonation(donationId)
@@ -58,33 +106,40 @@ export default function DonaiationType({ apiLink }) {
                         <li className={`option ${active === "furniture" && "active"}`} onClick={() => handleOptionClick("furniture")}>{content("furniture")}</li>
                     </ul>
                     {donation.length > 0
-                        ? <div className="row">
-                            {donation.map((item) => {
+                        ? <div className="row justify-content-center align-items-center">
+                            {donation.filter((item) => item.active).map((item) => {
                                 const date = new Date(item.pub_date);
 
                                 const year = date.getFullYear();
                                 const month = date.getMonth() + 1;
                                 const day = date.getDate();
 
-                                let hours = date.getHours();
-                                let minutes = date.getMinutes();
-                                const ampm = hours >= 12 ? 'PM' : 'AM';
-                                hours = hours % 12 || 12;
-                                minutes = minutes < 9 ? `0${minutes}` : minutes
+                                // let hours = date.getHours();
+                                // let minutes = date.getMinutes();
+                                // const ampm = hours >= 12 ? 'PM' : 'AM';
+                                // hours = hours % 12 || 12;
+                                // minutes = minutes < 9 ? `0${minutes}` : minutes
                                 return (
-                                    <div className="col-12 col-md-6 col-lg-3 p-2" key={item.serial}>
+                                    <div className="col-12 col-md-6 col-lg-4 p-2" key={item.serial}>
                                         <div className="inner ">
                                             <div className="image w-100">
-                                                <img src={item.image_path ? item.image_path : placholder} alt={item.title} className='w-100' />
+                                                <img src={item.image_path ? `${imageLink}${item.image_path} ` : placholder} alt={item.title} className='w-100' />
                                             </div>
                                             <div className="content p-2">
                                                 <h5>{item.title}</h5>
+                                                <p>{item.description}</p>
                                                 <h6 className='time'>
                                                     <span>{`${year}-${month}-${day}`}</span>
-                                                    <span>{`${hours}:${minutes} ${ampm}`}</span>
+                                                    {/* <span>{`${hours}:${minutes} ${ampm}`}</span> */}
                                                 </h6>
                                                 <span className="type">{type}</span>
-                                                <Link to={"/test"} className='d-flex align-items-center justify-content-around link'> <span>Show</span> <span><i className="fa-solid fa-arrow-right"></i></span></Link>
+                                                {
+                                                    type === "food" && <>
+                                                        <span className="type">weight: {item.weight} kg</span>
+                                                        <span className="type">Quantity: {item.quantity}</span>
+                                                    </>
+                                                }
+                                                <button onClick={() => orderDonation(item.serial)} className='d-flex align-items-center justify-content-around link'> <span><i className="fa-solid fa-plus"></i></span>  <span>Order</span></button>
                                             </div>
                                         </div>
                                     </div>
@@ -96,7 +151,6 @@ export default function DonaiationType({ apiLink }) {
                         </div>
 
                     }
-
                 </div>
             </section>
         </>

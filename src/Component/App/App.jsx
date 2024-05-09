@@ -12,6 +12,8 @@ import UserRequest from "../User/UserRequest/UserRequest";
 import InNeed from "../User/InNeed/InNeed";
 import Needs from "../Needs/Needs";
 import AddDonaiation from "../User/AddDonaiation/AddDonaiation";
+import ItemDetailsProvider from "../../Context/ItemDetails/ItemDetailsProvider";
+import UserDonation from "../User/UserDonation/UserDonation";
 
 const Base_API_URL = "https://api.donority.site/api/"
 const router = createBrowserRouter([
@@ -21,15 +23,16 @@ const router = createBrowserRouter([
     element: <MasterLayout />,
     children: [
       { index: true, element: <Home apiLink={Base_API_URL} /> },
-      { path: "/donaiton/:type", element: <DonaiationType apiLink={Base_API_URL} /> },
-      { path: "/needs", element: <Needs apiLink={Base_API_URL} /> },
+      { path: "/donaiton/:type", element: <ItemDetailsProvider> <DonaiationType apiLink={Base_API_URL} /> </ItemDetailsProvider> },
+      { path: "/needs/:type", element: <ItemDetailsProvider> <Needs apiLink={Base_API_URL} /> </ItemDetailsProvider> },
       { path: "/signin", element: <ProtectedRoute><Signin apiLink={Base_API_URL} /></ProtectedRoute> },
       { path: "/signup", element: <ProtectedRoute ><Signup apiLink={Base_API_URL} /></ProtectedRoute> },
       { path: "/reset-password", element: <ProtectedRoute ><ResetPassword apiLink={Base_API_URL} /></ProtectedRoute> },
       { path: "/user-profile", element: <ProtectedRoute ><UserProfile apiLink={Base_API_URL} /></ProtectedRoute> },
       { path: "/user-request", element: <ProtectedRoute ><UserRequest apiLink={Base_API_URL} /></ProtectedRoute> },
       { path: "/in-need", element: <ProtectedRoute ><InNeed apiLink={Base_API_URL} /></ProtectedRoute> },
-      { path: "/add-donaiation", element: <ProtectedRoute ><AddDonaiation apiLink={Base_API_URL}/></ProtectedRoute> },
+      { path: "/add-donaiation", element: <ProtectedRoute ><AddDonaiation apiLink={Base_API_URL} /></ProtectedRoute> },
+      { path: "/user-donaiation", element: <ProtectedRoute ><UserDonation apiLink={Base_API_URL} /></ProtectedRoute> },
     ]
   }
 ]);
