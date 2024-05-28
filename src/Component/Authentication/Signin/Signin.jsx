@@ -66,10 +66,10 @@ export default function Signin({ apiLink }) {
             setErrors({
                 userEmail: content("userEmailError")
             });
-        else if (!userPasswordisValid)
-            setErrors({
-                userPassword: content("userPasswordError")
-            });
+        // else if (!userPasswordisValid)
+        //     setErrors({
+        //         userPassword: content("userPasswordError")
+        //     });
         else
             return true
     }

@@ -1,38 +1,44 @@
-import Home from "../Home/Home";
+import React from 'react';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import MasterLayout from "../MasterLayout/MasterLayout";
-import { RouterProvider, createBrowserRouter, createHashRouter } from "react-router-dom";
+import Home from "../Home/Home";
+import NotFound from "../NotFound/NotFound";
 import Signin from "../Authentication/Signin/Signin";
 import Signup from "../Authentication/Signup/Signup";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ResetPassword from "../Authentication/ResetPassword/ResetPassword";
-import NotFound from "../NotFound/NotFound";
 import DonaiationType from "../DonaiationType/DonaiationType";
+import Needs from "../Needs/Needs";
 import UserProfile from "../User/UserProfile/UserProfile";
 import UserRequest from "../User/UserRequest/UserRequest";
 import InNeed from "../User/InNeed/InNeed";
-import Needs from "../Needs/Needs";
 import AddDonaiation from "../User/AddDonaiation/AddDonaiation";
-import ItemDetailsProvider from "../../Context/ItemDetails/ItemDetailsProvider";
 import UserDonation from "../User/UserDonation/UserDonation";
+import DonaitionDetails from "../DonaitionDetails/DonaitionDetails";
+import ItemDetailsProvider from "../../Context/ItemDetails/ItemDetailsProvider";
+import { AuthProtectedRoute, DashboardProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
+import { RequestDetailsProvider } from "../../Context/RequestDetails/RequestDetailsProvider";
+import RequestDetails from '../User/RequestDetails/RequestDetails';
 
-const Base_API_URL = "https://api.donority.site/api/"
-const router = createBrowserRouter([
+const Base_API_URL = "https://api.donority.site/api/";
+const router = createHashRouter([
   { errorElement: <NotFound /> },
   {
     path: "",
     element: <MasterLayout />,
     children: [
       { index: true, element: <Home apiLink={Base_API_URL} /> },
-      { path: "/donaiton/:type", element: <ItemDetailsProvider> <DonaiationType apiLink={Base_API_URL} /> </ItemDetailsProvider> },
-      { path: "/needs/:type", element: <ItemDetailsProvider> <Needs apiLink={Base_API_URL} /> </ItemDetailsProvider> },
-      { path: "/signin", element: <ProtectedRoute><Signin apiLink={Base_API_URL} /></ProtectedRoute> },
-      { path: "/signup", element: <ProtectedRoute ><Signup apiLink={Base_API_URL} /></ProtectedRoute> },
-      { path: "/reset-password", element: <ProtectedRoute ><ResetPassword apiLink={Base_API_URL} /></ProtectedRoute> },
-      { path: "/user-profile", element: <ProtectedRoute ><UserProfile apiLink={Base_API_URL} /></ProtectedRoute> },
-      { path: "/user-request", element: <ProtectedRoute ><UserRequest apiLink={Base_API_URL} /></ProtectedRoute> },
-      { path: "/in-need", element: <ProtectedRoute ><InNeed apiLink={Base_API_URL} /></ProtectedRoute> },
-      { path: "/add-donaiation", element: <ProtectedRoute ><AddDonaiation apiLink={Base_API_URL} /></ProtectedRoute> },
-      { path: "/user-donaiation", element: <ProtectedRoute ><UserDonation apiLink={Base_API_URL} /></ProtectedRoute> },
+      { path: "/donation/:type", element: <ItemDetailsProvider><DonaiationType apiLink={Base_API_URL} /></ItemDetailsProvider> },
+      { path: "/donation-details/:id", element: <ItemDetailsProvider><DonaitionDetails apiLink={Base_API_URL} /></ItemDetailsProvider> },
+      { path: "/needs/:type", element: <ItemDetailsProvider><Needs apiLink={Base_API_URL} /></ItemDetailsProvider> },
+      { path: "/signin", element: <AuthProtectedRoute><Signin apiLink={Base_API_URL} /></AuthProtectedRoute> },
+      { path: "/signup", element: <AuthProtectedRoute><Signup apiLink={Base_API_URL} /></AuthProtectedRoute> },
+      { path: "/reset-password", element: <AuthProtectedRoute><ResetPassword apiLink={Base_API_URL} /></AuthProtectedRoute> },
+      { path: "/user-profile", element: <DashboardProtectedRoute><UserProfile apiLink={Base_API_URL} /></DashboardProtectedRoute> },
+      { path: "/user-request/:type", element: <DashboardProtectedRoute><RequestDetailsProvider><UserRequest apiLink={Base_API_URL} /></RequestDetailsProvider></DashboardProtectedRoute> },
+      { path: "/user-request/details/:id", element: <DashboardProtectedRoute><RequestDetailsProvider><RequestDetails /></RequestDetailsProvider></DashboardProtectedRoute> },
+      { path: "/in-need", element: <DashboardProtectedRoute><InNeed apiLink={Base_API_URL} /></DashboardProtectedRoute> },
+      { path: "/add-donation", element: <DashboardProtectedRoute><AddDonaiation apiLink={Base_API_URL} /></DashboardProtectedRoute> },
+      { path: "/user-donation", element: <DashboardProtectedRoute><UserDonation apiLink={Base_API_URL} /></DashboardProtectedRoute> },
     ]
   }
 ]);

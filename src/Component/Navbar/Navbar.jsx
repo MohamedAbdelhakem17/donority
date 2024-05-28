@@ -80,7 +80,7 @@ export default function Navbar() {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link onClick={closeNavbar} className="nav-link" to={"/donaiton/food"}>
+                                <Link onClick={closeNavbar} className="nav-link" to={"/donation/food"}>
                                     {content("donations")}
                                 </Link>
                             </li>
@@ -120,16 +120,16 @@ export default function Navbar() {
                                         <Link className="menu-link" to={"/user-profile"} onClick={() => setOpenMenu(!openMenu)}>{content("userProfile")}</Link>
                                     </li>
                                     <li className="menu-item">
-                                        <Link className="menu-link" to={"/add-donaiation"} onClick={() => setOpenMenu(!openMenu)}>{content("addDonation")}</Link>
+                                        <Link className="menu-link" to={"/add-donation"} onClick={() => setOpenMenu(!openMenu)}>{content("addDonation")}</Link>
                                     </li>
                                     <li className="menu-item">
-                                        <Link className="menu-link" to={"/user-donaiation"} onClick={() => setOpenMenu(!openMenu)}>Your  Donation</Link>
+                                        <Link className="menu-link" to={"/user-donation"} onClick={() => setOpenMenu(!openMenu)}>Your  Donation</Link>
                                     </li>
                                     <li className="menu-item">
                                         <Link className="menu-link" to={"/in-need"} onClick={() => setOpenMenu(!openMenu)}>{content("addNeeds")}</Link>
                                     </li>
                                     <li className="menu-item">
-                                        <Link className="menu-link" to={"/user-request"} onClick={() => setOpenMenu(!openMenu)}>{content("showRequest")}</Link>
+                                        <Link className="menu-link" to={"/user-request/donation"} onClick={() => setOpenMenu(!openMenu)}>{content("showRequest")}</Link>
                                     </li>
                                     <li className="logout" onClick={handelLogout}>{content("logout")}</li>
                                 </ul>

@@ -2,23 +2,20 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import useAuth from "../../Context/AuthContext/AuthContext";
 
-export default function ProtectedRoute({ children }) {
+export function AuthProtectedRoute({ children }) {
   const { isloggedIn } = useAuth();
-  const childName = children.type.name
-
-  if (isloggedIn) {
-    const allowedRoutes = ["UserProfile", "UserRequest", "InNeed", "AddDonaiation", "UserDonation"];
-    if (allowedRoutes.includes(childName)) {
-      return children;
-    } else {
-      return <Navigate to="/" />;
-    }
+  if (!isloggedIn) {
+    return children;
   } else {
-    const restrictedRoutes = ["Signin", "Signup", "ResetPassword"];
-    if (restrictedRoutes.includes(childName)) {
-      return children;
-    } else {
-      return <Navigate to="/" />;
-    }
+    return <Navigate to="/" />;
+  }
+}
+
+export function DashboardProtectedRoute({ children }) {
+  const { isloggedIn } = useAuth();
+  if (isloggedIn) {
+    return children;
+  } else {
+    return <Navigate to="/" />;
   }
 }

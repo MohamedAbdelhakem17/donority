@@ -8,14 +8,6 @@ const AuthProvider = ({ children }) => {
     const [userId, setUserId] = useState("")
     const [userLoggedInData, setUserLoggedInData] = useState(null)
 
-    useEffect(() => {
-        if (localStorage.getItem("user") !== null) {
-            const userId = JSON.parse(localStorage.getItem("user"))[0].id
-            setUserId(userId)
-            saveUserData();
-        }
-    }, [])
-
     const saveUserData = () => {
         let data = localStorage.getItem("user")
         let user = JSON.parse(data)
@@ -30,7 +22,15 @@ const AuthProvider = ({ children }) => {
         return <Navigate to="/" />
     }
 
-    return <AuthContext.Provider value={{ isloggedIn, setIsLoggedIn, logout, saveUserData, userLoggedInData  , userId}}>
+    useEffect(() => {
+        if (localStorage.getItem("user") !== null) {
+            saveUserData();
+            const userId = JSON.parse(localStorage.getItem("user"))[0].id
+            setUserId(userId)
+        }
+    }, [])
+
+    return <AuthContext.Provider value={{ isloggedIn, setIsLoggedIn, logout, saveUserData, userLoggedInData, userId }}>
         {children}
     </AuthContext.Provider>
 

@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ItemDetails } from "./ItemDetailsContext"
+import { json } from "react-router-dom"
 
 
 const ItemDetailsProvider = ({ children }) => {
@@ -7,10 +8,15 @@ const ItemDetailsProvider = ({ children }) => {
 
 
     const showDetailes = (item) => {
+        sessionStorage.setItem("item", JSON.stringify(item))
         setDetails(item)
-        console.log(item)
     }
 
+    useEffect(() => {
+        const data = JSON.parse(sessionStorage.getItem("item"))
+        if (sessionStorage.getItem("item") !== null)
+            setDetails(data)
+    }, [])
 
     return <ItemDetails.Provider value={{ showDetailes, details }}>
         {children}
