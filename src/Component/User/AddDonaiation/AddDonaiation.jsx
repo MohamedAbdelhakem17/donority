@@ -5,17 +5,18 @@ import querystring from 'querystring';
 import "../user.css"
 import useAuth from "../../../Context/AuthContext/AuthContext";
 import Swal from "sweetalert2"
+import { getFormattedDate } from "../../../utilities/FormatData";
 // import uploadImageToDatabase from "../../../utilities/uploadImageToDatabase";
 // import useContent from '../../../utilities/ChangeLanguage';
 
 export default function AddDonaiation({ apiLink }) {
     const { userId } = useAuth()
     const imageFile = useRef()
-
+    console.log(imageFile)
     const [imageName, setImageName] = useState(null)
     const [selectedValue, setSelectedValue] = useState(null);
     const [errors, setErrors] = useState({})
-    const [pubDate, setPubDate] = useState("")
+    // const [pubDate, setPubDate] = useState("")
     const [loader, setLoader] = useState(false);
     const [donationData, setDonationData] = useState({
         category_id: "",
@@ -43,14 +44,14 @@ export default function AddDonaiation({ apiLink }) {
     }
 
     const collectDonationData = (event) => {
-        const dataItem = { ...donationData, pub_date: pubDate }
+        const dataItem = { ...donationData, pub_date: getFormattedDate() }
         dataItem[event.target.name] = event.target.value
         setDonationData(dataItem)
     }
 
     const sendDataToDatabase = async (pathImage) => {
         try {
-            const item = { ...donationData, pub_date: pubDate, image_path: pathImage }
+            const item = { ...donationData, pub_date: getFormattedDate(), image_path: pathImage }
             const apiUrl = `${apiLink}AddDonation`;
             const encodedData = querystring.stringify(item);
             const { data } = await axios.post(apiUrl, encodedData, {
@@ -59,7 +60,7 @@ export default function AddDonaiation({ apiLink }) {
                 }
             })
             const { Code, Message } = data;
-            console.log({data})
+            console.log({ data })
             if (Code === 200) {
                 Swal.fire({
                     position: "center",
@@ -102,9 +103,7 @@ export default function AddDonaiation({ apiLink }) {
 
 
     useEffect(() => {
-        let date = new Date()
-        date = date.toLocaleString()
-        setPubDate(date)
+        // setPubDate(date)
     }, [])
 
 
