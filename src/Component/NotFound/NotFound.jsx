@@ -1,6 +1,5 @@
 import React from 'react'
 import notFoundImg from "./404.png"
-import "./notFound.css"
 import { Link } from 'react-router-dom'
 import useContent from '../../utilities/ChangeLanguage';
 

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom'
-import "./donaiationType.css"
+import { useParams, useNavigate } from 'react-router-dom'
 import useContent from '../../utilities/ChangeLanguage'
 import food from "./donationsType/food.jpg"
 import clothes from "./donationsType/Clothes.jpg"
 import furniture from "./donationsType/furniture.jpg"
 import tool from "./donationsType/tools.jpg"
 import axios from 'axios'
-import Swal from 'sweetalert2'
 import useGetOneItem from '../../Context/ItemDetails/ItemDetailsContext'
 import formatDate from '../../utilities/FormatData'
 import getId from '../../utilities/HandelTYpe'

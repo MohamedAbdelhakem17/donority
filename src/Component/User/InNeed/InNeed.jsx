@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import querystring from 'querystring';
-import "../user.css"
 import useAuth from "../../../Context/AuthContext/AuthContext";
 import Swal from "sweetalert2"
 import { getFormattedDate } from '../../../utilities/FormatData';

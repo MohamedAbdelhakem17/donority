@@ -54,7 +54,7 @@ export default function UserProfile() {
                                         <input onChange={collectUserData} type="text" name='user_name' id='user_name' disabled={!editMode}
 
                                             className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`} defaultValue={userData.user_name} />
-                                        {/* {errors.userEmail && <span className='error'>{errors.userEmail}</span>} */}
+    
                                     </div>
                                 </div>
                                 <div className="col-12 col-md-6">
@@ -63,7 +63,7 @@ export default function UserProfile() {
                                         <input onChange={collectUserData} type="text" name='first_name' id='first_name' disabled={!editMode}
 
                                             className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`} defaultValue={userData.first_name} />
-                                        {/* {errors.userEmail && <span className='error'>{errors.userEmail}</span>} */}
+    
                                     </div>
                                 </div>
                                 <div className="col-12 col-md-6">
@@ -72,7 +72,7 @@ export default function UserProfile() {
                                         <input onChange={collectUserData} type="text" name='last_name' id='last_name' disabled={!editMode}
 
                                             className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`} defaultValue={userData.last_name} />
-                                        {/* {errors.userEmail && <span className='error'>{errors.userEmail}</span>} */}
+    
                                     </div>
                                 </div>
                                 <div className="col-12">
@@ -81,7 +81,7 @@ export default function UserProfile() {
                                         <input onChange={collectUserData} type="text" name='address' id='address' disabled={!editMode}
 
                                             className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`} defaultValue={userData.address} />
-                                        {/* {errors.userEmail && <span className='error'>{errors.userEmail}</span>} */}
+    
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@ export default function UserProfile() {
                                     <input onChange={collectUserData} type="email" name='email' id='email' disabled={!editMode}
 
                                         className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`} defaultValue={userData.email} />
-                                    {/* {errors.userEmail && <span className='error'>{errors.userEmail}</span>} */}
+
                                 </div>
                             </div>
                             <div className="col-md-5 col-12">
@@ -116,7 +116,7 @@ export default function UserProfile() {
                                         disabled={!editMode}
                                         className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`}
                                         defaultValue={userData.password} />
-                                    {/* {errors.userEmail && <span className='error'>{errors.userEmail}</span>} */}
+
                                 </div>
                             </div>
                             <div className="col-md-5 col-12">
@@ -126,7 +126,7 @@ export default function UserProfile() {
                                         disabled={!editMode}
                                         className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`}
                                         defaultValue={userData.secert_answer} />
-                                    {/* {errors.userEmail && <span className='error'>{errors.userEmail}</span>} */}
+
                                 </div>
                             </div>
                             <div className="col-md-5 col-12">
@@ -136,7 +136,7 @@ export default function UserProfile() {
                                         disabled={!editMode}
                                         className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`}
                                         defaultValue={userData.mobile_number} />
-                                    {/* {errors.userEmail && <span className='error'>{errors.userEmail}</span>} */}
+
                                 </div>
                             </div>
                             <div className="col-md-5 col-12">

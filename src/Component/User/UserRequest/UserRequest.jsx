@@ -7,7 +7,7 @@ export default function UserRequest() {
   const navigateTo = useNavigate()
   const { type } = useParams()
   const [active, setActive] = useState(type)
-  
+
   const handleOptionClick = (type) => {
     setActive(type);
     navigateTo(`/user-request/${type}`);
@@ -17,7 +17,7 @@ export default function UserRequest() {
     navigateTo(`/user-request/details/${id}`)
   }
 
-  const { fullDonationData  , fullNeedData} = useGetRequestDetails();
+  const { fullDonationData, fullNeedData } = useGetRequestDetails();
   return (
     <section className='user-request main-padding-top '>
       <div className="main-title">
@@ -36,12 +36,12 @@ export default function UserRequest() {
               fullDonationData.length > 0 ?
                 fullDonationData.map(item => <div className="col-12 col-md-6 col-lg-4" key={item?.serial}>
                   <div className="inner-needs" >
-                    <h6>Donation Title</h6>
-                    <p>{item?.title}</p>
-                    <h6>Donor's name</h6>
-                    <p>{`${item?.firstname} ${item?.lasrname}`}</p>
-                    <h6>Donation date</h6>
-                    <p>{formatDate(item?.pub_date)}</p>
+                    <h6 className='label'>Donation Titel</h6>
+                    <p className='title'>{item?.title}</p>
+                    <h6 className='label'>Donor's name</h6>
+                    <p className='title'>{`${item?.firstname} ${item?.lasrname}`}</p>
+                    <h6 className='label'>Donation date</h6>
+                    <p className='title'>{formatDate(item?.pub_date)}</p>
                     <button className='btn' onClick={() => showNeedsDetails(item?.serial)}> Show Details <i className="fa-solid fa-arrow-right"></i></button>
                   </div>
                 </div>)

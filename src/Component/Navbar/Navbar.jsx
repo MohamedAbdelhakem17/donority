@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./navbar.css";
 import logo from "./logo.png";
 import useLocalization from "../../Context/LocalizationContext/LoclaesContext";
 import { Link, useLocation } from "react-router-dom";

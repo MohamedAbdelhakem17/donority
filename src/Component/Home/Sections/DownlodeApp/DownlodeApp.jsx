@@ -1,6 +1,5 @@
 import React from 'react'
 import phoneImage from "./phone.png"
-import "./downloade-app.css"
 import android from "./android.svg"
 import useContent from '../../../../utilities/ChangeLanguage'
 
@@ -8,7 +7,7 @@ export default function DownlodeApp() {
     const content = useContent("downloed_app")
     return (
         <>
-            <section className="download-app bg-light py-3">
+            <section className="download-app bg-light pt-3 pb-5">
                 <div className="container">
                     <div className="row align-items-center justify-content-between">
                         <div className="col-lg-6 col-md-7 text-center content " data-aos="zoom-in" data-aos-duration="500"  >

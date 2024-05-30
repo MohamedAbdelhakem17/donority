@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react'
 import axios from 'axios'
 import querystring from 'querystring';
 import Swal from "sweetalert2"
-import "../user.css"
 import useAuth from "../../../Context/AuthContext/AuthContext";
 import { getFormattedDate } from "../../../utilities/FormatData";
 import { useNavigate } from 'react-router-dom';

@@ -1,10 +1,10 @@
-import "./user-donation.css"
 import React, { useEffect, useState } from 'react'
 // import useContent from '../../utilities/ChangeLanguage'
 // import placholder from "./placholder.jpg"
 import axios from 'axios'
 import useAuth from "../../../Context/AuthContext/AuthContext"
 import formatDate from "../../../utilities/FormatData"
+
 export default function UserDonation({ apiLink }) {
     const [active, setActive] = useState(true)
     const { userId } = useAuth()

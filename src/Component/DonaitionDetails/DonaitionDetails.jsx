@@ -1,5 +1,4 @@
 import React from 'react'
-import "./donation-details.css"
 import useGetOneItem from '../../Context/ItemDetails/ItemDetailsContext'
 import placholder from "./placholder.jpg"
 import formatDate from '../../utilities/FormatData'
@@ -72,16 +71,16 @@ export default function DonaitionDetails({ apiLink }) {
                         <div className="px-2 content">
                             <div className="my-1 px-1">
                                 <p className="title">Title</p>
-                                <h5>{details.title}</h5>
+                                <h5 className='label'>{details.title}</h5>
                             </div>
 
-                            <div className="my-1 px-1 align-items-center">
+                            <div className="my-1 px-1 ">
                                 <p className="title">description </p>
-                                <h5>{details.description}</h5>
+                                <h5 className='label'>{details.description}</h5>
                             </div>
                             <div className="my-1 px-1">
                                 <p className="title"> Data Add </p>
-                                <h5>{formatDate(details.pub_date)}  </h5>
+                                <h5 className='label'>{formatDate(details.pub_date)}  </h5>
                             </div>
                             {details.category_id == 1 && <>
 
@@ -89,15 +88,15 @@ export default function DonaitionDetails({ apiLink }) {
                                     <p className="title">
                                         Expiry Date
                                     </p>
-                                    <h5>{formatDate(details.expiry_date)}</h5>
+                                    <h5 className='label'>{formatDate(details.expiry_date)}</h5>
                                 </div>
                                 <div className="my-1 px-1">
                                     <p className="title">quantity</p>
-                                    <h5>{details.quantity}</h5>
+                                    <h5 className='label'>{details.quantity}</h5>
                                 </div>
                                 <div className="my-1 px-1">
                                     <p className="title">weight</p>
-                                    <h5>{details.weight} Kg</h5>
+                                    <h5 className='label'>{details.weight} Kg</h5>
                                 </div>
                             </>}
                             <button className='btn-order' onClick={() => handelOrderDonation(details.serial)}> Order Now <i className="fa-solid fa-plus"></i></button>
