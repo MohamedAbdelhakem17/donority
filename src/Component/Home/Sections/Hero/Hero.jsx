@@ -31,8 +31,8 @@ export default function Hero() {
             <p className='h3'>{content("donations")} <br className='d-md-none d-block' /> <span ref={el} /></p>
           </div>
           <div className="button" data-aos="fade-left" data-aos-duration="500" >
-            <Link to={isloggedIn ? "/add-donaiation" : "/signin"}>{content("donate_now")} </Link>
-            <Link to={"/needs/food"}>{content("isNeed")} </Link>
+            <Link to={isloggedIn ? "/add-donation" : "/signin"}>{content("donate_now")} </Link>
+            <Link to={isloggedIn ? "/in-need" : "/signin"}>{content("isNeed")} </Link>
           </div>
         </div>
       </section>

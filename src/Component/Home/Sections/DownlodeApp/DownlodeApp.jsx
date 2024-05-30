@@ -21,7 +21,7 @@ export default function DownlodeApp() {
                                 {content("install_text.footer")}
                             </p>
 
-                            <a className="button" href={phoneImage} download>
+                            <a className="button" href="https://drive.google.com/file/d/1vQORSKjeAnqvVHJwJRu60jlu-BrfHiVN/view?usp=drive_link" target='_blank'>
                                 <img src={android} alt="android Icon" />
                                 <p>{content("button.title")} <br /> <span>{content("button.phone_type")}</span></p>
                             </a>

@@ -12,7 +12,7 @@ export default function DonaitionDetails({ apiLink }) {
     const imageLink = "https://api.donority.site/images/"
     const navigatTo = useNavigate()
     const { details } = useGetOneItem()
-    const { isloggedIn } = useAuth()
+    const { isloggedIn, userId } = useAuth()
 
     const orderDonation = async (id) => {
         try {
@@ -20,15 +20,14 @@ export default function DonaitionDetails({ apiLink }) {
             const { data } = await axios(apiUrl);
             const { Code, Message, data: responseData } = data;
             if (Code === 200) {
-                const fullData = { ...responseData.OwnerDetails, donationId: id }
+                const fullData = { ...responseData.OwnerDetails, donationId: id, userOrderd: userId }
                 const orderList = [fullData]
-                if (localStorage.getItem("orderList") !== null) {
-                    const data = JSON.parse(localStorage.getItem("orderList"))
+                if (localStorage.getItem("donationList") !== null) {
+                    const data = JSON.parse(localStorage.getItem("donationList"))
                     data.push(fullData)
-                    console.log(data)
-                    localStorage.setItem("orderList", JSON.stringify(data))
+                    localStorage.setItem("donationList", JSON.stringify(data))
                 } else {
-                    localStorage.setItem("orderList", JSON.stringify(orderList))
+                    localStorage.setItem("donationList", JSON.stringify(orderList))
                 }
                 Swal.fire({
                     position: "center",

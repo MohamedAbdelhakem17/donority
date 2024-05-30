@@ -18,6 +18,7 @@ import ItemDetailsProvider from "../../Context/ItemDetails/ItemDetailsProvider";
 import { AuthProtectedRoute, DashboardProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import { RequestDetailsProvider } from "../../Context/RequestDetails/RequestDetailsProvider";
 import RequestDetails from '../User/RequestDetails/RequestDetails';
+import NeedDetails from '../NeedDetails/NeedDetails';
 
 const Base_API_URL = "https://api.donority.site/api/";
 const router = createHashRouter([
@@ -30,6 +31,7 @@ const router = createHashRouter([
       { path: "/donation/:type", element: <ItemDetailsProvider><DonaiationType apiLink={Base_API_URL} /></ItemDetailsProvider> },
       { path: "/donation-details/:id", element: <ItemDetailsProvider><DonaitionDetails apiLink={Base_API_URL} /></ItemDetailsProvider> },
       { path: "/needs/:type", element: <ItemDetailsProvider><Needs apiLink={Base_API_URL} /></ItemDetailsProvider> },
+      { path: "/need-details/:id", element: <ItemDetailsProvider><NeedDetails apiLink={Base_API_URL} /></ItemDetailsProvider> },
       { path: "/signin", element: <AuthProtectedRoute><Signin apiLink={Base_API_URL} /></AuthProtectedRoute> },
       { path: "/signup", element: <AuthProtectedRoute><Signup apiLink={Base_API_URL} /></AuthProtectedRoute> },
       { path: "/reset-password", element: <AuthProtectedRoute><ResetPassword apiLink={Base_API_URL} /></AuthProtectedRoute> },

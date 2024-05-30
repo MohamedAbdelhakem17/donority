@@ -8,16 +8,17 @@ export default function RequestDetails() {
     const { id } = useParams()
     const imageLink = "https://api.donority.site/images/"
     const [itemData, setItemData] = useState()
-    const { fullOrderData } = useGetRequestDetails();
+    const { fullDonationData } = useGetRequestDetails();
 
     const showOneItem = (id) => {
-        const singleItem = fullOrderData.find((item) => item.serial === +id)
+        const singleItem = fullDonationData.find((item) => item.serial === +id)
         setItemData(singleItem)
     }
 
+    
     useEffect(() => {
         showOneItem(id)
-    }, [fullOrderData])
+    }, [fullDonationData])
     return (
         <>
             <section className='main-padding-top request-details'>
@@ -68,27 +69,26 @@ export default function RequestDetails() {
                                     </div>
                                     <div className="px-1">
                                         <p className="title">Address</p>
-                                        <h5>{itemData.address}</h5>
+                                        <h5>{itemData.adress}</h5>
                                     </div>
                                     <div className="px-1">
                                         <p className="title">Phone</p>
-                                        <h5>{itemData.mobile_number}</h5>
+                                        <h5>{itemData.phonenumber}</h5>
                                     </div>
                                     <div className="px-1">
                                         <p className="title">Email</p>
                                         <h5>{itemData.email}</h5>
                                     </div>
-
                                     <h2>Communication</h2>
                                     <div className="row contact">
                                         <div className="col-4">
                                             <a href={`mailto:${itemData.email}`}>Send Email <i className="fa-solid fa-envelope"></i> </a>
                                         </div>
                                         <div className="col-4">
-                                            <a href={`tel:${itemData.mobile_number}`}>Call Me <i className="fa-solid fa-phone"></i></a>
+                                            <a href={`tel:${itemData.phonenumber}`}>Call Me <i className="fa-solid fa-phone"></i></a>
                                         </div>
                                         <div className="col-4">
-                                            <a href={`https://wa.me/20${itemData.mobile_number}`} rel="noopener" title="Chat with Me" target="_blank">Whatsapp<i
+                                            <a href={`https://wa.me/20${itemData.phonenumber}`} rel="noopener" title="Chat with Me" target="_blank">Whatsapp<i
                                                 className="fa-brands fa-whatsapp"></i></a>
                                         </div>
                                     </div>

@@ -1,90 +1,105 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom'
-import useContent from '../../utilities/ChangeLanguage'
-import useGetOneItem from '../../Context/ItemDetails/ItemDetailsContext'
-import formatDate from '../../utilities/FormatData'
-import axios from 'axios'
-import getId from '../../utilities/HandelTYpe'
-
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import useContent from "../../utilities/ChangeLanguage";
+import useGetOneItem from "../../Context/ItemDetails/ItemDetailsContext";
+import formatDate from "../../utilities/FormatData";
+import axios from "axios";
+import getId from "../../utilities/HandelTYpe";
 
 export default function Needs({ apiLink }) {
-    const { type } = useParams()
-    const [active, setActive] = useState(type)
-    const [donation, setDonation] = useState([])
-    const content = useContent("donation")
-    const { showDetailes } = useGetOneItem()
-    const navigate = useNavigate();
-    let donationId = getId(type)
+    const { type } = useParams();
+    const [active, setActive] = useState(type);
+    const [donation, setDonation] = useState([]);
+    const content = useContent("donation");
+    const { showDetailes } = useGetOneItem();
+    const navigateTo = useNavigate();
+    let donationId = getId(type);
 
-    
     const handleOptionClick = (type) => {
         setActive(type);
-        navigate(`/needs/${type}`);
+        navigateTo(`/needs/${type}`);
     };
 
     const getDonation = async (id) => {
         try {
-            const apiUrl = `${apiLink}GetInneed?cat_id=${id}`
-            const { data } = await axios(apiUrl)
-            const { Code, data: dataRespons } = data
-            if (Code === 200)
-                setDonation(dataRespons)
-            else
-                setDonation([])
-
-            console.log(data.data)
+            const apiUrl = `${apiLink}GetInneed?cat_id=${id}`;
+            const { data } = await axios(apiUrl);
+            const { Code, data: dataRespons } = data;
+            if (Code === 200) setDonation(dataRespons);
+            else setDonation([]);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
+
+    const handelshowDetailes = (id, item) => {
+        navigateTo(`/need-details/${id}`);
+        showDetailes(item);
+    };
 
     useEffect(() => {
-        getDonation(donationId)
-    }, [type])
+        getDonation(donationId);
+    }, [type]);
 
     return (
         <>
-            <section className='main-padding-top donaiation-type' >
+            <section className="main-padding-top donaiation-type">
                 <div className="container py-2">
                     <ul className="options">
-                        <li className={`option ${active === "food" && "active"}`} onClick={() => handleOptionClick("food")}>{content("food")}</li>
-                        <li className={`option ${active === "clothes" && "active"}`} onClick={() => handleOptionClick("clothes")}>{content("clothes")}</li>
-                        <li className={`option ${active === "tools" && "active"}`} onClick={() => handleOptionClick("tools")}>{content("tools")}</li>
-                        <li className={`option ${active === "furniture" && "active"}`} onClick={() => handleOptionClick("furniture")}>{content("furniture")}</li>
+                        <li className={`option ${active === "food" && "active"}`} onClick={() => handleOptionClick("food")}
+                        >
+                            {content("food")}
+                        </li>
+                        <li className={`option ${active === "clothes" && "active"}`} onClick={() =>
+                            handleOptionClick("clothes")}
+                        >
+                            {content("clothes")}
+                        </li>
+                        <li className={`option ${active === "tools" && "active"}`} onClick={() => handleOptionClick("tools")}
+                        >
+                            {content("tools")}
+                        </li>
+                        <li className={`option ${active === "furniture" && "active"}`} onClick={() =>
+                            handleOptionClick("furniture")}
+                        >
+                            {content("furniture")}
+                        </li>
                     </ul>
-                    {donation.length > 0
-                        ? <div className="row">
-                            {donation.filter((item) => item.active).map((item) => {
-
-                                return (
-                                    <div className="col-12 col-md-6 col-lg-3 p-2" key={item.serial}>
-                                        <div className="inner ">
-                                            <div className="content p-2">
-                                                <h5>{item.title}</h5>
-                                                <p>{item.description}</p>
-                                                <h5 className='time'>{formatDate(item.expiry_date)}</h5>
-
-                                                <span className="type">{type}</span>
-                                                {
-                                                    type === "food" && <>
-                                                        <span className="type">weight: {item.weight} kg</span>
-                                                        <span className="type">Quantity: {item.quantity}</span>
-                                                    </>
-                                                }
-                                                <Link to={"/test"} className='d-flex align-items-center justify-content-around link'> <span>Donate</span> <span><i className="fa-solid fa-hand-holding-dollar"></i></span></Link>
+                    {donation.length > 0 ? (
+                        <div className="row">
+                            {donation
+                                .filter((item) => item.active)
+                                .map((item) => {
+                                    return (
+                                        <div className="col-12 col-md-6 col-lg-3 p-2" key={item.serial}>
+                                            <div className="inner ">
+                                                <div className="need-content ">
+                                                    <span className="type">{type}</span>
+                                                    <h5>{item.title}</h5>
+                                                    <h6 className="time">
+                                                        <span> {formatDate(item.expiry_date)}</span>
+                                                        <span onClick={() =>
+                                                            handelshowDetailes(item.serial, item)
+                                                        }
+                                                            className="link"
+                                                        >
+                                                            <i className="fa-solid fa-arrow-right px-2"></i>
+                                                            Show Details
+                                                        </span>
+                                                    </h6>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )
-                            })}
+                                    );
+                                })}
                         </div>
-                        : <div className="loading">
+                    ) : (
+                        <div className="loading">
                             <i className="fa-solid fa-spinner fa-spin"></i>
                         </div>
-                    }
-
+                    )}
                 </div>
             </section>
         </>
-    )
+    );
 }

@@ -112,7 +112,7 @@ export default function AddDonaiation({ apiLink }) {
         <>
             <section className='main-padding-top'>
                 <div className="main-title">
-                    <h2>Add Donaiation</h2>
+                    <h2>Add Donation</h2>
                 </div>
                 <div className="container">
                     <form className='user-form' onSubmit={handelFormSubmit}>
@@ -178,7 +178,7 @@ export default function AddDonaiation({ apiLink }) {
                             </div>
                         </>}
 
-                        <button type='submit' className={loader ? "disabled btn" : "btn"} onClick={uploadImageToDatabase}>{loader ? <i
+                        <button type='submit' className={loader ? "disabled btn" : "btn"}>{loader ? <i
                             className="fa-solid fa-spinner fa-spin"></i> : "Add"}</button>
                     </form>
                 </div>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { ItemDetails } from "./ItemDetailsContext"
-import { json } from "react-router-dom"
 
 
 const ItemDetailsProvider = ({ children }) => {

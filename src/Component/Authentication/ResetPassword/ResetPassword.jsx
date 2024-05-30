@@ -53,9 +53,11 @@ export default function ResetPassword({ apiLink }) {
             const apiUrl = `${apiLink}EditUser`;
             const newUserData = { ...userData, password: newPassword }
             setUserData(newUserData)
-            const { data } = await axios.put(apiUrl, JSON.stringify(userData), {
+            const { data } = await axios.post(apiUrl, JSON.stringify(userData), {
                 headers: {
+                    // 'Content-Type': 'application/json'
                     'Content-Type': 'application/x-www-form-urlencoded'
+
                 }
             })
 

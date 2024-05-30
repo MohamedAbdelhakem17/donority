@@ -16,7 +16,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 a {
@@ -29,34 +29,6 @@ ul {
   padding: 0;
 }
 
-.container {
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-left: auto;
-  margin-right: auto;
-
-  /* Small */
-  @media (min-width: 768px) {
-    & {
-      width: 750px;
-    }
-  }
-
-  /* Medium */
-  @media (min-width: 992px) {
-    & {
-      width: 970px;
-    }
-  }
-
-  /* Large */
-  @media (min-width: 1200px) {
-    & {
-      width: 1170px;
-    }
-  }
-}
-
 .main-title {
   padding: 30px 50px;
   background-image: url("../img/HeroBg.jpg");
@@ -67,10 +39,9 @@ ul {
 
   h2 {
     color: white;
-    font-size: 4rem
+    font-size: 4rem;
   }
 }
-
 
 .main-padding-top {
   padding-top: 80px;
@@ -97,7 +68,6 @@ ul {
     align-items: center;
     flex-direction: column;
     row-gap: 20px;
-
 
     .content {
       text-align: center;
@@ -153,7 +123,6 @@ ul {
     }
 
     @media (max-width: 500px) {
-
       html:lang("en"),
       html:lang("ar") {
         font-size: 10px;
@@ -169,12 +138,10 @@ ul {
         }
       }
     }
-
   }
 }
 
 @media (max-width: 1998px) {
-
   html:lang("en"),
   html:lang("ar") {
     font-size: 14px;
@@ -187,13 +154,11 @@ ul {
 }
 
 @media (max-width: 994px) {
-
   html:lang("en"),
   html:lang("ar") {
     font-size: 12px;
   }
 }
-
 
 .donations-type {
   .title {
@@ -211,7 +176,7 @@ ul {
     aspect-ratio: 1/1;
 
     &:hover {
-      transform: scale(.9);
+      transform: scale(0.9);
     }
 
     img {
@@ -233,7 +198,6 @@ ul {
       font-size: 2.5rem;
     }
   }
-
 }
 
 /* End Home */
@@ -252,6 +216,15 @@ ul {
   }
 }
 
+.loading {
+  font-size: 100px;
+  color: var(--main-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 
 /* End loading screen */
 
@@ -288,7 +261,7 @@ ul {
 
   & .inner-needs {
     border-radius: 10px;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.100);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
     padding: 10px;
 
     & h6 {
@@ -330,8 +303,6 @@ ul {
 /* Start Request Details */
 .request-details {
   padding-bottom: 10px;
-
-
 
   & img {
     width: 100%;
@@ -409,11 +380,52 @@ ul {
       & i {
         font-weight: 900;
         padding: 0 5px;
-
       }
     }
   }
-
 }
 
 /* End Request Details */
+
+.need-content {
+  width: 100%;
+  & span.type {
+    width: 100%;
+    display: block;
+    background-color: var(--main-color);
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  & h5 {
+    text-align: center;
+    color: var(--main-color);
+    font-size: 20px;
+  }
+
+  & h6 {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+
+    & .link {
+      direction: rtl;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--main-color);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    & .time {
+      font-size: 16px;
+      font-weight: 500;
+      color: #0000005d;
+    }
+  }
+}

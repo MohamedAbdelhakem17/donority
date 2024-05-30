@@ -74,7 +74,7 @@ export default function DonaiationType({ apiLink }) {
                     {donation.length > 0
                         ? <div className="row justify-content-center align-items-center">
                             {donation.map((item) => {
-
+                                console.log(item)
                                 return (
                                     <div className="col-12 col-md-6 col-lg-4 p-2" key={item.serial}>
                                         <div className="inner ">
@@ -84,10 +84,9 @@ export default function DonaiationType({ apiLink }) {
                                             </div>
                                             <div className="content p-2">
                                                 <h5>{item.title}</h5>
-
-                                                <h5 className='time'>{formatDate(item.expiry_date)}</h5>
-
-
+                                                {
+                                                    item.expiry_date && <h5 className='time'>{formatDate(item.expiry_date)}</h5>
+                                                }
                                                 <span className="type">{type}</span>
                                                 <span onClick={() => handelshowDetailes(item.serial, item)} className='link'><i className="fa-solid fa-arrow-right"></i> Show Details </span>
                                             </div>

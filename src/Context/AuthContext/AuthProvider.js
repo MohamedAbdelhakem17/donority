@@ -9,8 +9,10 @@ const AuthProvider = ({ children }) => {
     const [userLoggedInData, setUserLoggedInData] = useState(null)
 
     const saveUserData = () => {
-        let data = localStorage.getItem("user")
-        let user = JSON.parse(data)
+        const data = localStorage.getItem("user")
+        const user = JSON.parse(data)
+        const userId = user[0].id
+        setUserId(userId)
         setUserLoggedInData(user)
         setIsLoggedIn(true)
     }
@@ -19,16 +21,15 @@ const AuthProvider = ({ children }) => {
         localStorage.removeItem("user")
         setUserLoggedInData(null)
         setIsLoggedIn(false)
+        setUserId("")
         return <Navigate to="/" />
     }
 
     useEffect(() => {
         if (localStorage.getItem("user") !== null) {
             saveUserData();
-            const userId = JSON.parse(localStorage.getItem("user"))[0].id
-            setUserId(userId)
         }
-    }, [])
+    }, [userId])
 
     return <AuthContext.Provider value={{ isloggedIn, setIsLoggedIn, logout, saveUserData, userLoggedInData, userId }}>
         {children}
