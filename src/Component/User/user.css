@@ -1,8 +1,4 @@
-.main-title+.container {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* 
 
     & .user-form {
         background-color: var(--form-bg);
@@ -43,16 +39,7 @@
                 color: var(--main-color);
                 font-weight: 700;
 
-                &.add-image {
-                    background: white;
-                    width: 100%;
-                    padding: 5px 20px;
-                    border: 1px solid var(--main-color);
-                    border-radius: 10px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                }
+                &
             }
 
             & input {
@@ -112,52 +99,7 @@
         }
 
 
-        & .donation-type {
-            margin: 10px 0;
-            padding: 10px 20px;
-            background-color: white;
-            border: 1px solid var(--main-color);
-            border-radius: 10px;
 
-            & .title {
-                color: var(--main-color);
-                font-size: 1.15rem;
-            }
-
-            & .items {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
-                & .item {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    column-gap: 5px;
-
-                    label {
-                        padding: 5px;
-                        color: var(--main-color);
-                        font-weight: 700;
-                    }
-                }
-            }
-        }
-
-        .btn {
-            display: block;
-            color: white;
-            font-weight: 600;
-            font-size: 18px;
-            padding: 10px 50px;
-            margin: 10px auto;
-            background-color: var(--main-color);
-            transition: background-color 200ms ease-in-out;
-
-            &:hover {
-                background-color: var(--main-color-alt);
-            }
-        }
 
     }
-}
+} */

@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import "../Static/authentication.css"
 import axios from 'axios'
 import querystring from 'querystring';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Link } from 'react-router-dom';
 import Swal from "sweetalert2"
 import useContent from '../../../utilities/ChangeLanguage';
 
@@ -133,7 +132,7 @@ export default function Signup({ apiLink }) {
                     <h2>{content("title")}</h2>
                 </div>
                 <div className="container">
-                    <form className='auth-form' onSubmit={onSubmitHandel}>
+                    <form className='main-form' onSubmit={onSubmitHandel}>
                         <div className="input-colaction">
                             <label htmlFor="firstName">{content("firstName")}</label>
                             <input onChange={collectUserData} type="text" name='first_name' id='firstName'
@@ -184,11 +183,13 @@ export default function Signup({ apiLink }) {
                             <label htmlFor="quation">{content("question")}</label>
                             <input onChange={collectUserData} type="text" name='secert_answer' id='quation' />
                         </div>
-                        <button type='submit' className={loader ? "disabled btn" : "btn"}>{loader ? <i
+                        <button type='submit' className={loader ? "disabled main-btn" : "main-btn"}>{loader ? <i
                             className="fa-solid fa-spinner fa-spin"></i> : content("registerButton")}</button>
+                        <p className='text-muted h5'> Have Account<Link to={"/signin"} className="link-form">Log in</Link></p>
                         {errors.all && <span className='error text-center d-block '>{errors.all}</span>}
                     </form>
                 </div>
+                
             </section>
         </>
     )

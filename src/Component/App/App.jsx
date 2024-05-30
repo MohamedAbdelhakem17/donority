@@ -10,7 +10,7 @@ import DonaiationType from "../DonaiationType/DonaiationType";
 import Needs from "../Needs/Needs";
 import UserProfile from "../User/UserProfile/UserProfile";
 import UserRequest from "../User/UserRequest/UserRequest";
-import InNeed from "../User/InNeed/InNeed";
+import AddNeed from "../User/InNeed/InNeed";
 import AddDonaiation from "../User/AddDonaiation/AddDonaiation";
 import UserDonation from "../User/UserDonation/UserDonation";
 import DonaitionDetails from "../DonaitionDetails/DonaitionDetails";
@@ -38,7 +38,7 @@ const router = createHashRouter([
       { path: "/user-profile", element: <DashboardProtectedRoute><UserProfile apiLink={Base_API_URL} /></DashboardProtectedRoute> },
       { path: "/user-request/:type", element: <DashboardProtectedRoute><RequestDetailsProvider><UserRequest apiLink={Base_API_URL} /></RequestDetailsProvider></DashboardProtectedRoute> },
       { path: "/user-request/details/:id", element: <DashboardProtectedRoute><RequestDetailsProvider><RequestDetails /></RequestDetailsProvider></DashboardProtectedRoute> },
-      { path: "/in-need", element: <DashboardProtectedRoute><InNeed apiLink={Base_API_URL} /></DashboardProtectedRoute> },
+      { path: "/in-need", element: <DashboardProtectedRoute><AddNeed apiLink={Base_API_URL} /></DashboardProtectedRoute> },
       { path: "/add-donation", element: <DashboardProtectedRoute><AddDonaiation apiLink={Base_API_URL} /></DashboardProtectedRoute> },
       { path: "/user-donation", element: <DashboardProtectedRoute><UserDonation apiLink={Base_API_URL} /></DashboardProtectedRoute> },
     ]

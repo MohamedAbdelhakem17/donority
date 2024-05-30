@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from '../../../Context/AuthContext/AuthContext';
-import "../Static/authentication.css"
 import useContent from '../../../utilities/ChangeLanguage';
 
 export default function Signin({ apiLink }) {
@@ -87,7 +86,7 @@ export default function Signin({ apiLink }) {
                     <h2>{content("login")}</h2>
                 </div>
                 <div className="container">
-                    <form className='auth-form mt-5' onSubmit={onSubmitHandel}>
+                    <form className='main-form mt-5' onSubmit={onSubmitHandel}>
                         <div className="input-colaction">
                             <label htmlFor="userEmail">{content("email")}</label>
                             <input onChange={collectUserData} type="email" name='email' id='userEmail' className={errors.userEmail && "not-valid"} />
@@ -102,7 +101,7 @@ export default function Signin({ apiLink }) {
                             <Link to={"/reset-password"} className="link-form">{content("forget_password")}</Link>
                             {errors.userPassword && <span className='error'>{errors.userPassword}</span>}
                         </div>
-                        <button type='submit' className={loader ? "disabled btn" : "btn"}>{loader ? <i
+                        <button type='submit' className={loader ? "disabled main-btn" : "main-btn"}>{loader ? <i
                             className="fa-solid fa-spinner fa-spin"></i> : content("button")}</button>
                         <p className='text-muted h5'> {content("new_account")}<Link to={"/signup"} className="link-form">{content("register")}</Link></p>
                         {errors.all && <span

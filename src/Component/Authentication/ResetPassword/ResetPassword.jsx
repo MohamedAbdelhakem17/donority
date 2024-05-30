@@ -97,7 +97,7 @@ export default function ResetPassword({ apiLink }) {
                     <h2>{content("mainTitle")}</h2>
                 </div>
                 <div className="container">
-                    <form className='auth-form mt-5' onSubmit={onSubmitHandel}>
+                    <form className='main-form mt-5' onSubmit={onSubmitHandel}>
 
                         {!isCorrectAnswer && <>
                             <div className="input-colaction">
@@ -110,7 +110,7 @@ export default function ResetPassword({ apiLink }) {
                                 <input onChange={collectUserData} type="text" name='secert' id='userPassword' className={errors.userPassword && "not-valid"} value={userAmswer.secert && userAmswer.secert} />
                                 {errors.userPassword && <span className='error'>{errors.userPassword}</span>}
                             </div>
-                            <button type='submit' className={loader ? "disabled btn" : "btn"}>{loader ? <i
+                            <button type='submit' className={loader ? "disabled main-btn" : "main-btn"}>{loader ? <i
                                 className="fa-solid fa-spinner fa-spin"></i> : content("getNewPassword")}</button>
                             {errors.all && <span
                                 className='error text-center d-block '>{errors.all}</span>}
@@ -126,7 +126,7 @@ export default function ResetPassword({ apiLink }) {
                                 </div>
                                 {errors.userEmail && <span className='error'>{errors.userEmail}</span>}
                             </div>
-                            <button type='submit' className={loader ? "disabled btn" : "btn"}>{loader ? <i
+                            <button type='submit' className={loader ? "disabled main-btn" : "main-btn"}>{loader ? <i
                                 className="fa-solid fa-spinner fa-spin"></i> : content("setNewPassword")}</button>
                             {errors.all && <span
                                 className='error text-center d-block '>{errors.all}</span>}
