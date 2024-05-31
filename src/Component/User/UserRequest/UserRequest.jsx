@@ -7,6 +7,7 @@ export default function UserRequest() {
   const navigateTo = useNavigate()
   const { type } = useParams()
   const [active, setActive] = useState(type)
+  const { fullDonationData, fullNeedData } = useGetRequestDetails();
 
   const handleOptionClick = (type) => {
     setActive(type);
@@ -17,7 +18,12 @@ export default function UserRequest() {
     navigateTo(`/user-request/details/${id}`)
   }
 
-  const { fullDonationData, fullNeedData } = useGetRequestDetails();
+  const showDonationDetails = (id) => {
+    navigateTo(`/user-request/details/${id}`)
+  }
+
+
+  console.log(fullDonationData)
   return (
     <section className='user-request main-padding-top '>
       <div className="main-title">
@@ -29,6 +35,27 @@ export default function UserRequest() {
           <h6 className={`option ${active === "needs" ? "active" : ""}`} onClick={() => handleOptionClick("needs")} >Needs</h6>
         </div>
         <div className="row py-2 w-100 justify-content-center align-items-center gy-4">
+
+          {/* Donation */}
+          {active === "donation" && <>
+            {
+              fullNeedData.length > 0 ?
+                fullNeedData.map(item => <div className="col-12 col-md-6 col-lg-4" key={item?.serial}>
+                  <div className="inner-needs" >
+                    <h6 className='label'>Need Titel</h6>
+                    <p className='title'>{item?.title}</p>
+                    <h6 className='label'>The needy</h6>
+                    <p className='title'>{`${item?.firstname} ${item?.lasrname}`}</p>
+                    <h6 className='label'>Need date</h6>
+                    <p className='title'>{formatDate(item?.pub_date)}</p>
+                    <button className='btn' onClick={() => showDonationDetails(item?.serial)}> Show Details <i className="fa-solid fa-arrow-right"></i></button>
+                  </div>
+                </div>)
+                : <div className="loading">
+                  <i className="fa-solid fa-spinner fa-spin"></i>
+                </div>
+            }
+          </>}
 
           {/* Needs */}
           {active === "needs" && <>

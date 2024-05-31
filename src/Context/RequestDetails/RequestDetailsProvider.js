@@ -40,11 +40,11 @@ export const RequestDetailsProvider = ({ children }) => {
         }
     };
 
-    const getMixedData = (orderData, callback) => {
+    const getMixedData = (orderData, callback, type) => {
         const userOrder = orderData.map((order) =>
-            donations.find((donation) => donation.serial === order.donationId)
+            type.find((item) => item.serial === +order.donationId)
+            
         );
-
         if (
             userOrder.every((item) => item !== undefined) &&
             userOrder.length !== 0
@@ -52,7 +52,7 @@ export const RequestDetailsProvider = ({ children }) => {
             const mixedData = userOrder
                 .map((order) => {
                     const user = orderData.find(
-                        (user) => user.donationId === order.serial
+                        (user) => +user.donationId === order.serial
                     );
                     return { ...order, ...user };
                 })
@@ -69,15 +69,15 @@ export const RequestDetailsProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        getMixedData(donationOrderData, setFullDontaionData)
+        getMixedData(donationOrderData, setFullDontaionData, donations)
     }, [donationOrderData, donations]);
 
     useEffect(() => {
-        getMixedData(needOrderData, setFullDontaionData)
+        getMixedData(needOrderData, setFullNeedData, needs)
     }, [needOrderData, needs]);
 
     return (
-        <RequestContext.Provider value={{ fullDonationData , fullNeedData }}>
+        <RequestContext.Provider value={{ fullDonationData, fullNeedData }}>
             {children}
         </RequestContext.Provider>
     );

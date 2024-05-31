@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import axios from 'axios'
 import querystring from 'querystring';
 import Swal from "sweetalert2"
@@ -6,7 +6,7 @@ import useAuth from "../../../Context/AuthContext/AuthContext";
 import { getFormattedDate } from "../../../utilities/FormatData";
 import { useNavigate } from 'react-router-dom';
 import Joi from 'joi';
-// import useContent from '../../../utilities/ChangeLanguage';
+import useContent from '../../../utilities/ChangeLanguage';
 
 export default function AddDonaiation({ apiLink }) {
     const { userId } = useAuth()
@@ -23,9 +23,9 @@ export default function AddDonaiation({ apiLink }) {
         image_path: "",
         quantity: 0,
         weight: 0,
+        expiry_date: "",
         description: "",
         pub_date: "",
-        expiry_date: "",
         active: true,
         user_id: ""
     })
@@ -33,11 +33,17 @@ export default function AddDonaiation({ apiLink }) {
     const handleRadioChange = (event) => {
         const id = +event.target.value
         setCategoryId(id)
+        console.log(id)
         setSelectedValue(id === 1 ? "food" : null)
+        setDonationData({
+            ...donationData, quantity: id === 1 ? 1 : 0,
+            weight: id === 1 ? 1 : 0,
+            expiry_date: "", category_id: id
+        })
     };
 
     const handelImageName = (event) => {
-        const imageName = event.target.files[0].name
+        const imageName = event.target.files[0]?.name
         setImageName(imageName)
     }
 
@@ -66,8 +72,22 @@ export default function AddDonaiation({ apiLink }) {
         }
     }
 
+    const getTodayDate = () => {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    };
+
+    const test = useContent("test")
+
+
+
     const dataValidation = (data) => {
-        setErrors({ all: "" })
+        setErrors({ all: "" });
+        const isRequired = categoryId === 1; 
+        console.log(isRequired)
         const schema = Joi.object({
             title: Joi.string().min(10).max(35).required(),
             description: Joi.string().min(10).required(),
@@ -76,20 +96,19 @@ export default function AddDonaiation({ apiLink }) {
             quantity: Joi.number().min(0).required(),
             weight: Joi.number().min(0).required(),
             pub_date: Joi.date().required(),
-            expiry_date: Joi.optional(),
-            active: true,
+            expiry_date: isRequired ? Joi.date().min(getTodayDate()).required() : Joi.string().min(0),
+            active: Joi.boolean().required(), 
             user_id: Joi.number().required()
-        })
-        const { error } = schema.validate(data, { abortEarly: false })
+        });
+        const { error } = schema.validate(data, { abortEarly: true });
 
         if (error) {
-            const result = error.details[0].message
-            setErrors({ all: result })
-
+            const result = error.details[0].message;
+            setErrors({ all: result });
         } else {
-            return true
+            return true;
         }
-    }
+    };
 
     const sendDataToDatabase = async (item) => {
         try {
@@ -120,29 +139,33 @@ export default function AddDonaiation({ apiLink }) {
     }
 
     const handelFormSubmit = async (event) => {
-        try {
-            setLoader(true);
-            event.preventDefault();
-            const img = imageFile.current.files[0];
-            if (img) {
-                const imagePath = await uploadImageToDatabase()
-                const item = {
-                    ...donationData, pub_date: getFormattedDate(), image_path: imagePath, user_id: userId, category_id:
-                        categoryId
-                }
-                const isValid = dataValidation(item)
-                isValid && sendDataToDatabase(item)
-            } else {
-                const item = { ...donationData, pub_date: getFormattedDate(), image_path: "", user_id: userId, category_id: categoryId }
-                const isValid = dataValidation(item)
-                isValid && sendDataToDatabase(item)
-            }
-        } catch (error) {
-            console.error(error)
-        } finally {
-            setLoader(false);
+        // try {
+        //     setLoader(true);
+        event.preventDefault();
+        //     const img = imageFile.current.files[0];
+        //     if (img) {
+        //         const imagePath = await uploadImageToDatabase()image_path: imagePath
+        const item = {
+            ...donationData, pub_date: getFormattedDate(), user_id: userId, category_id: categoryId
         }
+
+        const isValid = dataValidation(item)
+        isValid && console.log(item)
+        //         isValid && sendDataToDatabase(item)
+        //     } else {
+        //         const item = { ...donationData, pub_date: getFormattedDate(), image_path: "", user_id: userId, category_id: categoryId }
+        //         const isValid = dataValidation(item)
+        //         isValid && sendDataToDatabase(item)
+        //     }
+        // } catch (error) {
+        //     console.error(error)
+        // } finally {
+        //     setLoader(false);
+        // }
+
     }
+
+
 
     return (
         <>
@@ -206,21 +229,21 @@ export default function AddDonaiation({ apiLink }) {
                             <div className="input-colaction">
                                 <label htmlFor="quantity">Quantity</label>
                                 <input onChange={collectDonationData} type="number" name='quantity' id='quantity'
-                                    className={errors.userEmail && "not-valid"} />
+                                    className={errors.userEmail && "not-valid"} value={1} />
                                 {errors.userEmail && <span className='error'>{errors.userEmail}</span>}
                             </div>
 
                             <div className="input-colaction">
                                 <label htmlFor="weight">Weight</label>
                                 <input onChange={collectDonationData} type="number" name='weight' id='weight'
-                                    className={errors.userEmail && "not-valid"} />
+                                    className={errors.userEmail && "not-valid"} value={1} />
                                 {errors.userEmail && <span className='error'>{errors.userEmail}</span>}
                             </div>
 
                             <div className="input-colaction">
                                 <label htmlFor="expiry_date">Expiry Date</label>
                                 <input onChange={collectDonationData} type="date" name='expiry_date' id='expiry_date'
-                                    className={errors.userEmail && "not-valid"} />
+                                    className={errors.userEmail && "not-valid"} min={getTodayDate()} />
                                 {errors.userEmail && <span className='error'>{errors.userEmail}</span>}
                             </div>
                         </>}

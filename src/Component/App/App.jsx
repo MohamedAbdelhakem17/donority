@@ -19,6 +19,7 @@ import { AuthProtectedRoute, DashboardProtectedRoute } from "../ProtectedRoute/P
 import { RequestDetailsProvider } from "../../Context/RequestDetails/RequestDetailsProvider";
 import RequestDetails from '../User/RequestDetails/RequestDetails';
 import NeedDetails from '../NeedDetails/NeedDetails';
+import UserNeed from '../User/UserNeed/UserNeed';
 
 const Base_API_URL = "https://api.donority.site/api/";
 const router = createHashRouter([
@@ -41,6 +42,7 @@ const router = createHashRouter([
       { path: "/in-need", element: <DashboardProtectedRoute><AddNeed apiLink={Base_API_URL} /></DashboardProtectedRoute> },
       { path: "/add-donation", element: <DashboardProtectedRoute><AddDonaiation apiLink={Base_API_URL} /></DashboardProtectedRoute> },
       { path: "/user-donation", element: <DashboardProtectedRoute><UserDonation apiLink={Base_API_URL} /></DashboardProtectedRoute> },
+      { path: "/user-need", element: <DashboardProtectedRoute><UserNeed apiLink={Base_API_URL} /></DashboardProtectedRoute> },
     ]
   }
 ]);

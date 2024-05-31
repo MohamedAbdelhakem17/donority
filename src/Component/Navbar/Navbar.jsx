@@ -122,10 +122,13 @@ export default function Navbar() {
                                         <Link className="menu-link" to={"/add-donation"} onClick={() => setOpenMenu(!openMenu)}>{content("addDonation")}</Link>
                                     </li>
                                     <li className="menu-item">
-                                        <Link className="menu-link" to={"/user-donation"} onClick={() => setOpenMenu(!openMenu)}>Your  Donation</Link>
+                                        <Link className="menu-link" to={"/in-need"} onClick={() => setOpenMenu(!openMenu)}>{content("addNeeds")}</Link>
                                     </li>
                                     <li className="menu-item">
-                                        <Link className="menu-link" to={"/in-need"} onClick={() => setOpenMenu(!openMenu)}>{content("addNeeds")}</Link>
+                                        <Link className="menu-link" to={"/user-donation"} onClick={() => setOpenMenu(!openMenu)}> {content("myDonation")}</Link>
+                                    </li>
+                                    <li className="menu-item">
+                                        <Link className="menu-link" to={"/user-need"} onClick={() => setOpenMenu(!openMenu)}> {content("myNeed")}</Link>
                                     </li>
                                     <li className="menu-item">
                                         <Link className="menu-link" to={"/user-request/donation"} onClick={() => setOpenMenu(!openMenu)}>{content("showRequest")}</Link>

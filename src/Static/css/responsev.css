@@ -1,5 +1,5 @@
 /* Small Screen */
-@media (max-width: 425px) {
+@media (max-width: 473px) {
   html {
     font-size: 10px;
   }
@@ -103,11 +103,11 @@
   }
 
   .options {
-    gap: 10px;
+    gap: 5px;
 
     .option {
       font-size: 1.6rem;
-      padding: 0.5rem 2rem;
+      padding: 0.5rem 1.5rem;
     }
   }
 
@@ -129,6 +129,7 @@
     h2 {
       color: white;
       font-size: 3.5rem;
+      text-align: center;
     }
   }
 

@@ -9,9 +9,11 @@ import axios from 'axios'
 import useGetOneItem from '../../Context/ItemDetails/ItemDetailsContext'
 import formatDate from '../../utilities/FormatData'
 import getId from '../../utilities/HandelTYpe'
+import useAuth from '../../Context/AuthContext/AuthContext'
 
 export default function DonaiationType({ apiLink }) {
     const { type } = useParams()
+    const { isloggedIn, userId } = useAuth()
     const donationId = getId(type)
     const imageSrc = donationId === 1 ? food : donationId === 2 ? clothes : donationId === 3 ? furniture : tool
     const content = useContent("donation")
@@ -32,8 +34,15 @@ export default function DonaiationType({ apiLink }) {
             const apiUrl = `${apiLink}GetDonations?cat_id=${id}`
             const { data } = await axios(apiUrl)
             const { Code, data: dataRespons } = data
-            if (Code === 200)
-                setDonation(dataRespons.filter((item) => item.active))
+            console.log(dataRespons)
+            if (Code === 200) {
+                if (isloggedIn)
+                    setDonation(dataRespons)
+                // setDonation(dataRespons.filter((item) => item.active && item.user_id !== userId))
+                else
+                    setDonation(dataRespons)
+                // setDonation(dataRespons.filter((item) => item.active))
+            }
             else
                 setDonation([])
             setLoding(false)
@@ -50,7 +59,7 @@ export default function DonaiationType({ apiLink }) {
 
     useEffect(() => {
         getDonation(donationId)
-    }, [type])
+    }, [type, userId])
 
 
     return (
@@ -72,7 +81,6 @@ export default function DonaiationType({ apiLink }) {
                     {donation.length > 0
                         ? <div className="row justify-content-center align-items-center">
                             {donation.map((item) => {
-                                console.log(item)
                                 return (
                                     <div className="col-12 col-md-6 col-lg-4 p-2" key={item.serial}>
                                         <div className="inner ">
@@ -83,7 +91,7 @@ export default function DonaiationType({ apiLink }) {
                                             <div className="content p-2">
                                                 <h5>{item.title}</h5>
                                                 {
-                                                    item.expiry_date && <h5 className='time'>{formatDate(item.expiry_date)}</h5>
+                                                    item.expiry_date && <h5 className='time'>{formatDate(item.pub_date)}</h5>
                                                 }
                                                 <span className="type">{type}</span>
                                                 <span onClick={() => handelshowDetailes(item.serial, item)} className='link'><i className="fa-solid fa-arrow-right"></i> Show Details </span>

@@ -9,6 +9,8 @@
     "addDonation": "Add Donation",
     "addNeeds": "Add Needs",
     "showRequest": "Show Request",
+    "myDonation": "My  Donation",
+    "myNeed": "My Need",
     "logout": "Log Out",
     "language": {
       "en": "English",
@@ -113,5 +115,9 @@
       "need": "Needs",
       "contact_us": "Contact us"
     }
+  },
+
+  "test": {
+    "test": "MMMMMMMMMMMMMM"
   }
 }

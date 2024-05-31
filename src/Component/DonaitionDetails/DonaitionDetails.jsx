@@ -56,6 +56,7 @@ export default function DonaitionDetails({ apiLink }) {
             navigatTo("/signin")
         }, 1000)
     }
+    
     const handelOrderDonation = (id) => {
         isloggedIn ? orderDonation(id) : goToLogin(id)
     }
@@ -79,7 +80,7 @@ export default function DonaitionDetails({ apiLink }) {
                                 <h5 className='label'>{details.description}</h5>
                             </div>
                             <div className="my-1 px-1">
-                                <p className="title"> Data Add </p>
+                                <p className="title"> Donation Date </p>
                                 <h5 className='label'>{formatDate(details.pub_date)}  </h5>
                             </div>
                             {details.category_id == 1 && <>

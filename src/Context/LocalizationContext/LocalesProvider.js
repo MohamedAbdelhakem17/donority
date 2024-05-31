@@ -18,7 +18,7 @@ export const LocalizationProvider = ({ children }) => {
 
     useEffect(() => {
         saveUserOption();
-    }, []);
+    }, [language]);
 
     const changeLanguage = (lng) => {
         setLanguage(lng);
