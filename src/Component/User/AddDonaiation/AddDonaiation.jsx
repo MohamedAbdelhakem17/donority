@@ -86,7 +86,7 @@ export default function AddDonaiation({ apiLink }) {
 
     const dataValidation = (data) => {
         setErrors({ all: "" });
-        const isRequired = categoryId === 1; 
+        const isRequired = categoryId === 1;
         console.log(isRequired)
         const schema = Joi.object({
             title: Joi.string().min(10).max(35).required(),
@@ -97,7 +97,7 @@ export default function AddDonaiation({ apiLink }) {
             weight: Joi.number().min(0).required(),
             pub_date: Joi.date().required(),
             expiry_date: isRequired ? Joi.date().min(getTodayDate()).required() : Joi.string().min(0),
-            active: Joi.boolean().required(), 
+            active: Joi.boolean().required(),
             user_id: Joi.number().required()
         });
         const { error } = schema.validate(data, { abortEarly: true });
@@ -139,29 +139,29 @@ export default function AddDonaiation({ apiLink }) {
     }
 
     const handelFormSubmit = async (event) => {
-        // try {
-        //     setLoader(true);
-        event.preventDefault();
-        //     const img = imageFile.current.files[0];
-        //     if (img) {
-        //         const imagePath = await uploadImageToDatabase()image_path: imagePath
-        const item = {
-            ...donationData, pub_date: getFormattedDate(), user_id: userId, category_id: categoryId
-        }
+        try {
+            setLoader(true);
+            event.preventDefault();
+            const img = imageFile.current.files[0];
+            if (img) {
+                const imagePath = await uploadImageToDatabase()
+                const item = {
+                    ...donationData, pub_date: getFormattedDate(), user_id: userId, image_path: imagePath, category_id: categoryId
+                }
 
-        const isValid = dataValidation(item)
-        isValid && console.log(item)
-        //         isValid && sendDataToDatabase(item)
-        //     } else {
-        //         const item = { ...donationData, pub_date: getFormattedDate(), image_path: "", user_id: userId, category_id: categoryId }
-        //         const isValid = dataValidation(item)
-        //         isValid && sendDataToDatabase(item)
-        //     }
-        // } catch (error) {
-        //     console.error(error)
-        // } finally {
-        //     setLoader(false);
-        // }
+                const isValid = dataValidation(item)
+                isValid && console.log(item)
+                isValid && sendDataToDatabase(item)
+            } else {
+                const item = { ...donationData, pub_date: getFormattedDate(), image_path: "", user_id: userId, category_id: categoryId }
+                const isValid = dataValidation(item)
+                isValid && sendDataToDatabase(item)
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setLoader(false);
+        }
 
     }
 

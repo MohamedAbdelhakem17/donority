@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import useContent from '../../utilities/ChangeLanguage'
 import food from "./donationsType/food.jpg"
@@ -10,6 +10,8 @@ import useGetOneItem from '../../Context/ItemDetails/ItemDetailsContext'
 import formatDate from '../../utilities/FormatData'
 import getId from '../../utilities/HandelTYpe'
 import useAuth from '../../Context/AuthContext/AuthContext'
+import { Helmet } from "react-helmet";
+
 
 export default function DonaiationType({ apiLink }) {
     const { type } = useParams()
@@ -29,19 +31,16 @@ export default function DonaiationType({ apiLink }) {
         navigateTo(`/donation/${type}`);
     };
 
-    const getDonation = async (id) => {
+    const getDonation = useCallback(async (id) => {
         try {
             const apiUrl = `${apiLink}GetDonations?cat_id=${id}`
             const { data } = await axios(apiUrl)
             const { Code, data: dataRespons } = data
-            console.log(dataRespons)
             if (Code === 200) {
                 if (isloggedIn)
-                    setDonation(dataRespons)
-                // setDonation(dataRespons.filter((item) => item.active && item.user_id !== userId))
+                    setDonation(dataRespons.filter((item) => item.active && item.user_id !== userId))
                 else
-                    setDonation(dataRespons)
-                // setDonation(dataRespons.filter((item) => item.active))
+                    setDonation(dataRespons.filter((item) => item.active))
             }
             else
                 setDonation([])
@@ -49,7 +48,7 @@ export default function DonaiationType({ apiLink }) {
         } catch (error) {
             console.log(error)
         }
-    }
+    }, [apiLink , isloggedIn , userId])
 
 
     const handelshowDetailes = (id, item) => {
@@ -59,11 +58,14 @@ export default function DonaiationType({ apiLink }) {
 
     useEffect(() => {
         getDonation(donationId)
-    }, [type, userId])
+    }, [donationId, getDonation, userId])
 
 
     return (
         <>
+            <Helmet>
+                <title>DONORITY Dnation -{type}</title>
+            </Helmet>
             <section className='main-padding-top donaiation-type'>
                 <div className="container py-2">
 
@@ -112,18 +114,3 @@ export default function DonaiationType({ apiLink }) {
     )
 }
 
-
-// position: absolute;
-// top: 15px;
-// right: -30px;
-// color: white;
-// background-color: var(--main-color);
-// padding: 10px;
-// width: 40px;
-// height: 40px;
-// border-radius: 50%;
-// display: flex;
-// align-items: center;
-// justify-content: center;
-// transform: translate(-50%, -50%);
-// font-size: 20px;

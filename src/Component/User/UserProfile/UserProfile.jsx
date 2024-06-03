@@ -6,7 +6,6 @@ export default function UserProfile() {
     const [userData, setUserData] = useState({})
     const [errors, setErrors] = useState({})
     const [uploadImage, setUploadImage] = useState()
-    const [editMode, setEditMode] = useState(false)
 
     const { isloggedIn } = useAuth()
     const getUserData = () => {
@@ -21,7 +20,6 @@ export default function UserProfile() {
         setUploadImage(userPlacholder)
         setErrors({})
     }, [])
-    console.log(userData)
 
     const collectUserData = (event) => {
 
@@ -51,37 +49,37 @@ export default function UserProfile() {
                                 <div className="col-12 ">
                                     <div className="input-colaction bg-light">
                                         <label htmlFor="user_name"> Name</label>
-                                        <input onChange={collectUserData} type="text" name='user_name' id='user_name' disabled={!editMode}
+                                        <input onChange={collectUserData} type="text" name='user_name' id='user_name' disabled
 
-                                            className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`} defaultValue={userData.user_name} />
-    
+                                            className={`${errors.userEmail && "not-valid"} `} defaultValue={userData.user_name} />
+
                                     </div>
                                 </div>
                                 <div className="col-12 col-md-6">
                                     <div className="input-colaction bg-light">
                                         <label htmlFor="first_name"> First Name</label>
-                                        <input onChange={collectUserData} type="text" name='first_name' id='first_name' disabled={!editMode}
+                                        <input onChange={collectUserData} type="text" name='first_name' id='first_name' disabled
 
-                                            className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`} defaultValue={userData.first_name} />
-    
+                                            className={`${errors.userEmail && "not-valid"} `} defaultValue={userData.first_name} />
+
                                     </div>
                                 </div>
                                 <div className="col-12 col-md-6">
                                     <div className="input-colaction bg-light">
                                         <label htmlFor="last_name"> Last Name</label>
-                                        <input onChange={collectUserData} type="text" name='last_name' id='last_name' disabled={!editMode}
+                                        <input onChange={collectUserData} type="text" name='last_name' id='last_name' disabled
 
-                                            className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`} defaultValue={userData.last_name} />
-    
+                                            className={`${errors.userEmail && "not-valid"} `} defaultValue={userData.last_name} />
+
                                     </div>
                                 </div>
                                 <div className="col-12">
                                     <div className="input-colaction bg-light">
                                         <label htmlFor="address">Address</label>
-                                        <input onChange={collectUserData} type="text" name='address' id='address' disabled={!editMode}
+                                        <input onChange={collectUserData} type="text" name='address' id='address' disabled
 
-                                            className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`} defaultValue={userData.address} />
-    
+                                            className={`${errors.userEmail && "not-valid"} `} defaultValue={userData.address} />
+
                                     </div>
                                 </div>
                             </div>
@@ -90,12 +88,8 @@ export default function UserProfile() {
                                 <div className="img text-center">
                                     <img src={userData.image_path ? userData.image_path : uploadImage}
                                         alt={userData.user_name} />
-                                    {editMode && <div className="edit">
-                                        <label htmlFor="edit_image"><i className="fa-regular fa-pen-to-square"></i></label>
-                                        <input type="file" name='image_path' id='edit_image' onChange={handleImageChange} />
-                                    </div>}
+                                   
                                 </div>
-                                <span className="text text-muted">{userData.id_number}</span>
                             </div>
                         </div>
 
@@ -103,38 +97,20 @@ export default function UserProfile() {
                             <div className="col-md-10 col-12">
                                 <div className="input-colaction bg-light">
                                     <label htmlFor="email"> Email</label>
-                                    <input onChange={collectUserData} type="email" name='email' id='email' disabled={!editMode}
+                                    <input onChange={collectUserData} type="email" name='email' id='email' disabled
 
-                                        className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`} defaultValue={userData.email} />
-
-                                </div>
-                            </div>
-                            <div className="col-md-5 col-12">
-                                <div className="input-colaction bg-light">
-                                    <label htmlFor="userPassword"> password</label>
-                                    <input onChange={collectUserData} type="password" name='password' id='userPassword'
-                                        disabled={!editMode}
-                                        className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`}
-                                        defaultValue={userData.password} />
+                                        className={`${errors.userEmail && "not-valid"} `} defaultValue={userData.email} />
 
                                 </div>
                             </div>
-                            <div className="col-md-5 col-12">
-                                <div className="input-colaction bg-light">
-                                    <label htmlFor="secert_answer">Secert Answer</label>
-                                    <input onChange={collectUserData} type="password" name='secert_answer' id='secert_answer'
-                                        disabled={!editMode}
-                                        className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`}
-                                        defaultValue={userData.secert_answer} />
 
-                                </div>
-                            </div>
+
                             <div className="col-md-5 col-12">
                                 <div className="input-colaction bg-light">
                                     <label htmlFor="mobile_number"> Phone</label>
                                     <input onChange={collectUserData} type="text" name='mobile_number' id='mobile_number'
-                                        disabled={!editMode}
-                                        className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`}
+                                        disabled
+                                        className={`${errors.userEmail && "not-valid"} `}
                                         defaultValue={userData.mobile_number} />
 
                                 </div>
@@ -142,14 +118,13 @@ export default function UserProfile() {
                             <div className="col-md-5 col-12">
                                 <div className="input-colaction bg-light">
                                     <label htmlFor="test"> Email</label>
-                                    <input onChange={collectUserData} type="email" name='test' id='test' disabled={!editMode}
+                                    <input onChange={collectUserData} type="email" name='test' id='test' disabled
 
-                                        className={`${errors.userEmail && "not-valid"} ${editMode && "active"}`} defaultValue={userData.email} />
+                                        className={`${errors.userEmail && "not-valid"} `} defaultValue={userData.email} />
                                     {/* {errors.userEmail && <span className='error'>{errors.userEmail}</span>}*/}
                                 </div>
                             </div>
                         </div>
-                        <div className="btn mt-4 btn-primary" onClick={() => setEditMode(!editMode)}>Edit</div>
                     </form>
                 </div>
             </section>

@@ -19,14 +19,14 @@ export default function DonaitionDetails({ apiLink }) {
             const { data } = await axios(apiUrl);
             const { Code, Message, data: responseData } = data;
             if (Code === 200) {
-                const fullData = { ...responseData.OwnerDetails, donationId: id, userOrderd: userId }
+                const fullData = { ...responseData.OwnerDetails, ...details, userOrderd: userId }
                 const orderList = [fullData]
-                if (localStorage.getItem("donationList") !== null) {
-                    const data = JSON.parse(localStorage.getItem("donationList"))
+                if (localStorage.getItem("needList") !== null) {
+                    const data = JSON.parse(localStorage.getItem("needList"))
                     data.push(fullData)
-                    localStorage.setItem("donationList", JSON.stringify(data))
+                    localStorage.setItem("needList", JSON.stringify(data))
                 } else {
-                    localStorage.setItem("donationList", JSON.stringify(orderList))
+                    localStorage.setItem("needList", JSON.stringify(orderList))
                 }
                 Swal.fire({
                     position: "center",
@@ -56,7 +56,7 @@ export default function DonaitionDetails({ apiLink }) {
             navigatTo("/signin")
         }, 1000)
     }
-    
+
     const handelOrderDonation = (id) => {
         isloggedIn ? orderDonation(id) : goToLogin(id)
     }

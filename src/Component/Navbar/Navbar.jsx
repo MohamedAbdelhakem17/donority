@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import logo from "./logo.png";
 import useLocalization from "../../Context/LocalizationContext/LoclaesContext";
 import { Link, useLocation } from "react-router-dom";
@@ -24,11 +24,11 @@ export default function Navbar() {
         setIsNavbarOpen(false);
     };
 
-    const changeNavbarBackground = () => {
+    const changeNavbarBackground = useCallback(() => {
         const offsetTop = window.pageYOffset || document.documentElement.scrollTop;
         setIsActive(offsetTop > 100)
         setIsNavbarActive(isActive && isHomePage);
-    };
+    }, [isActive , isHomePage])
 
     useEffect(() => {
         const isHomePage = location.pathname === "/";
@@ -41,7 +41,7 @@ export default function Navbar() {
             window.removeEventListener("scroll", changeNavbarBackground);
         };
 
-    }, [location, isActive]);
+    }, [location, isActive , changeNavbarBackground]);
 
     const handleChangeLanguage = (event) => {
         const languageSelect = event.target.value;
@@ -101,6 +101,7 @@ export default function Navbar() {
                             }
                             <select name="language" id="language" onChange={handleChangeLanguage} value={lang}>
                                 <option value="en" >{content("language.en")}</option>
+                                <option value="ar" >{content("language.ar")}</option>
                                 <option value="ar" >{content("language.ar")}</option>
                             </select>
                         </ul>

@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import useAuth from '../../Context/AuthContext/AuthContext'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { Helmet } from 'react-helmet'
 
 export default function NeedDetails({ apiLink }) {
     const { details } = useGetOneItem()
@@ -19,14 +20,14 @@ export default function NeedDetails({ apiLink }) {
             const { data } = await axios(apiUrl);
             const { Code, Message, data: responseData } = data;
             if (Code === 200) {
-                const fullData = { ...responseData.OwnerDetails, donationId: id, userOrderd: userId }
+                const fullData = { ...responseData.OwnerDetails, ...details, userOrderd: userId }
                 const orderList = [fullData]
-                if (localStorage.getItem("needList") !== null) {
-                    const data = JSON.parse(localStorage.getItem("needList"))
+                if (localStorage.getItem("donationList") !== null) {
+                    const data = JSON.parse(localStorage.getItem("donationList"))
                     data.push(fullData)
-                    localStorage.setItem("needList", JSON.stringify(data))
+                    localStorage.setItem("donationList", JSON.stringify(data))
                 } else {
-                    localStorage.setItem("needList", JSON.stringify(orderList))
+                    localStorage.setItem("donationList", JSON.stringify(orderList))
                 }
                 Swal.fire({
                     position: "center",
@@ -63,6 +64,9 @@ export default function NeedDetails({ apiLink }) {
 
     return (
         <>
+            <Helmet>
+                <title>Donority Need - Details</title>
+            </Helmet>
             <section className='need-detailes main-padding-top'>
                 <div className="main-title">
                     <h2>Need Details</h2>

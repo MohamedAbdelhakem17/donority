@@ -8,10 +8,11 @@ export default function UserRequest() {
   const { type } = useParams()
   const [active, setActive] = useState(type)
   const { fullDonationData, fullNeedData } = useGetRequestDetails();
-
+  // const [loading, setLoding] = useState(true)
   const handleOptionClick = (type) => {
     setActive(type);
     navigateTo(`/user-request/${type}`);
+    // setLoding(false);
   };
 
   const showNeedsDetails = (id) => {
@@ -22,8 +23,9 @@ export default function UserRequest() {
     navigateTo(`/user-request/details/${id}`)
   }
 
+  console.log(fullDonationData , "fullDonationData")
+  console.log(fullNeedData , "fullNeedData")
 
-  console.log(fullDonationData)
   return (
     <section className='user-request main-padding-top '>
       <div className="main-title">
@@ -39,8 +41,8 @@ export default function UserRequest() {
           {/* Donation */}
           {active === "donation" && <>
             {
-              fullNeedData.length > 0 ?
-                fullNeedData.map(item => <div className="col-12 col-md-6 col-lg-4" key={item?.serial}>
+              fullDonationData.length > 0 ?
+                fullDonationData.map(item => <div className="col-12 col-md-6 col-lg-4" key={item?.serial}>
                   <div className="inner-needs" >
                     <h6 className='label'>Need Titel</h6>
                     <p className='title'>{item?.title}</p>
@@ -51,17 +53,21 @@ export default function UserRequest() {
                     <button className='btn' onClick={() => showDonationDetails(item?.serial)}> Show Details <i className="fa-solid fa-arrow-right"></i></button>
                   </div>
                 </div>)
-                : <div className="loading">
-                  <i className="fa-solid fa-spinner fa-spin"></i>
-                </div>
+                : (
+                  <div className="loading">
+                    {
+                      <h4>There are no items to display</h4>
+                    }
+                  </div>
+                )
             }
           </>}
 
           {/* Needs */}
           {active === "needs" && <>
             {
-              fullDonationData.length > 0 ?
-                fullDonationData.map(item => <div className="col-12 col-md-6 col-lg-4" key={item?.serial}>
+              fullNeedData.length > 0 ?
+                fullNeedData.map(item => <div className="col-12 col-md-6 col-lg-4" key={item?.serial}>
                   <div className="inner-needs" >
                     <h6 className='label'>Donation Titel</h6>
                     <p className='title'>{item?.title}</p>
@@ -72,9 +78,14 @@ export default function UserRequest() {
                     <button className='btn' onClick={() => showNeedsDetails(item?.serial)}> Show Details <i className="fa-solid fa-arrow-right"></i></button>
                   </div>
                 </div>)
-                : <div className="loading">
-                  <i className="fa-solid fa-spinner fa-spin"></i>
-                </div>
+                : (
+                  <div className="loading">
+                    
+                      <h4>There are no items to display</h4>
+
+                    
+                  </div>
+                )
             }
 
           </>}

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 // import useContent from '../../utilities/ChangeLanguage'
 // import placholder from "./placholder.jpg"
 import axios from 'axios'
 import useAuth from "../../../Context/AuthContext/AuthContext"
 import formatDate from "../../../utilities/FormatData"
+import { getType } from '../../../utilities/HandelTYpe'
 
 export default function UserDonation({ apiLink }) {
     const [active, setActive] = useState(true)
@@ -14,7 +15,7 @@ export default function UserDonation({ apiLink }) {
     let imageSrc, placholder
 
 
-    const getDonation = async (id) => {
+    const getDonation = useCallback(async (id) => {
         try {
             const apiUrl = `${apiLink}GetDonationsUser?user_id=${id}`
             const { data } = await axios(apiUrl)
@@ -27,7 +28,7 @@ export default function UserDonation({ apiLink }) {
         } catch (error) {
             console.log(error)
         }
-    }
+    }, [apiLink])
 
     const resetDonation = async (id) => {
         try {
@@ -36,34 +37,34 @@ export default function UserDonation({ apiLink }) {
             const { Code } = data
             if (Code === 200)
                 getDonation(userId)
-
             console.log(data.data)
         } catch (error) {
             console.log(error)
         }
     }
-    const deleteDonation = async (id) => {
-        try {
-            const apiUrl = `${apiLink}DeletedDonation?ID=${id}`
-            const { data } = await axios.delete(apiUrl, {
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8"
-                }
-            })
-            const { Code } = data
-            if (Code === 200)
-                getDonation(userId)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+
+    /* const deleteDonation = async (id) => {
+         try {
+             const apiUrl = `${apiLink}DeletedDonation?ID=${id}`
+             const { data } = await axios.delete(apiUrl, {
+                 headers: {
+                     "Content-Type": "application/json; charset=utf-8"
+                 }
+             })
+             const { Code } = data
+             if (Code === 200)
+                 getDonation(userId)
+         } catch (error) {
+             console.log(error)
+         }
+     }*/
 
     useEffect(() => {
         if (localStorage.getItem("user") !== null) {
             getDonation(userId)
         }
-    }, [])
-    
+    }, [userId, getDonation])
+
 
     return (
         <section className='user-donation main-padding-top '>
@@ -77,10 +78,10 @@ export default function UserDonation({ apiLink }) {
                 </div>
 
                 {donation.length > 0
-                    ? <div className="row justify-content-center align-items-center">
+                    ? <div className="row justify-content-center align-items-center w-100"  >
                         {donation.filter((item) => item.active === active).map((item) => {
                             return (
-                                <div className="col-12 col-md-6 col-lg-4 p-2" key={item.serial}>
+                                <div className="col-12 col-md-6 col-lg-4  p-2" key={item.serial}>
                                     {active ?
                                         <div className="inner-available">
                                             <div className="image w-100">
@@ -89,23 +90,26 @@ export default function UserDonation({ apiLink }) {
                                             <div className="content p-2">
                                                 <h5>{item.title}</h5>
                                                 <p>{item.description}</p>
+                                                <span className="type">{getType(item.category_id)}</span>
                                                 <h6 className='time'>
                                                     {formatDate(item.pub_date)}
                                                 </h6>
-                                                <h2 onClick={() => deleteDonation(item.serial)}><i className="fa-solid fa-delete-left"></i></h2>
+                                                {/* <h2 onClick={() => deleteDonation(item.serial)}><i className="fa-solid fa-delete-left"></i></h2> */}
                                             </div>
                                         </div>
 
                                         : <div className="inner-ordered">
                                             <div className="image">
                                                 <img src={item.image_path ? `${imageLink}${item.image_path} ` : imageSrc}
-                                                    alt={item.title} className='' />
+                                                    alt={item.title} className='w-100' />
                                             </div>
                                             <div className="content p-2">
+                                                <span className="type">{getType(item.category_id)}</span>
+                                                <div className="label">Title </div>
                                                 <h5>{item.title}</h5>
-                                                <h5 className='time'>{formatDate(item.expiry_date)}</h5>
-                                                {/* <span className="type">{type}</span> */}
-                                                <span className='link'><i className="fa-solid fa-arrow-right"></i> Show Details </span>
+                                                <div className="label">Expir Date</div>
+                                                <h5 className='title'>{formatDate(item.expiry_date)}</h5>
+                                                <button className='main-btn' onClick={() => resetDonation(item.serial)}>Retreve <i className="fa-solid fa-repeat"></i></button>
                                             </div>
                                         </div>}
                                 </div>

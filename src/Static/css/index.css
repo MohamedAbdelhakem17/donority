@@ -567,7 +567,6 @@ html[lang="ar"] {
   transform: translate(-50%, -50%);
   text-align: center;
 }
-
 /* End loading screen */
 
 /* Start Needs Request */
@@ -597,8 +596,42 @@ html[lang="ar"] {
     }
   }
 }
-
 /* End Needs Request */
+
+/* Start User Donation */
+.user-donation {
+  & .inner-ordered {
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    & .image img {
+      aspect-ratio: 1/0.7;
+    }
+    & .content {
+      padding: 16px;
+      direction: rtl;
+      & .type {
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      & .label {
+        padding: 3px 5px;
+        font-size: 16px;
+      }
+      & .main-btn {
+        background-color: var(--main-color-alt);
+        width: 50%;
+        padding: 5px 10px;
+        margin: 0 auto;
+        text-align: center;
+      }
+    }
+  }
+}
+/* End User Donation */
+
+/* Start User Need */
+/* End User Need */
 
 /* Start Request Details */
 .request-details {
@@ -835,6 +868,7 @@ html[lang="ar"] {
   }
 }
 /* End Not Found */
+
 /* Start Donation Type*/
 .donaiation-type {
   .inner {
