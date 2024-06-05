@@ -49,12 +49,12 @@ export default function Needs({ apiLink }) {
         console.log(error);
       }
     },
-    [isloggedIn, apiLink]
+    [isloggedIn, apiLink , donationId]
   );
 
   useEffect(() => {
     getDonation(donationId, userId);
-  }, [getDonation, userId, donationId]);
+  }, [userId, donationId ]);
 
   return (
     <>

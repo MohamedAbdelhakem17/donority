@@ -28,7 +28,7 @@ export default function Navbar() {
         const offsetTop = window.pageYOffset || document.documentElement.scrollTop;
         setIsActive(offsetTop > 100)
         setIsNavbarActive(isActive && isHomePage);
-    }, [isActive , isHomePage])
+    }, [isActive, isHomePage])
 
     useEffect(() => {
         const isHomePage = location.pathname === "/";
@@ -41,7 +41,7 @@ export default function Navbar() {
             window.removeEventListener("scroll", changeNavbarBackground);
         };
 
-    }, [location, isActive , changeNavbarBackground]);
+    }, [location, isActive, changeNavbarBackground]);
 
     const handleChangeLanguage = (event) => {
         const languageSelect = event.target.value;
@@ -126,7 +126,7 @@ export default function Navbar() {
                                         <Link className="menu-link" to={"/in-need"} onClick={() => setOpenMenu(!openMenu)}>{content("addNeeds")}</Link>
                                     </li>
                                     <li className="menu-item">
-                                        <Link className="menu-link" to={"/user-donation"} onClick={() => setOpenMenu(!openMenu)}> {content("myDonation")}</Link>
+                                        <Link className="menu-link" to={"/user-donation/available"} onClick={() => setOpenMenu(!openMenu)}> {content("myDonation")}</Link>
                                     </li>
                                     <li className="menu-item">
                                         <Link className="menu-link" to={"/user-need"} onClick={() => setOpenMenu(!openMenu)}> {content("myNeed")}</Link>

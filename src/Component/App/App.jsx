@@ -41,7 +41,7 @@ const router = createHashRouter([
       { path: "/user-request/details/:id", element: <DashboardProtectedRoute><RequestDetailsProvider><RequestDetails /></RequestDetailsProvider></DashboardProtectedRoute> },
       { path: "/in-need", element: <DashboardProtectedRoute><AddNeed apiLink={Base_API_URL} /></DashboardProtectedRoute> },
       { path: "/add-donation", element: <DashboardProtectedRoute><AddDonaiation apiLink={Base_API_URL} /></DashboardProtectedRoute> },
-      { path: "/user-donation", element: <DashboardProtectedRoute><UserDonation apiLink={Base_API_URL} /></DashboardProtectedRoute> },
+      { path: "/user-donation/:status", element: <DashboardProtectedRoute><UserDonation apiLink={Base_API_URL} /></DashboardProtectedRoute> },
       { path: "/user-need", element: <DashboardProtectedRoute><UserNeed apiLink={Base_API_URL} /></DashboardProtectedRoute> },
     ]
   }
