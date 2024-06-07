@@ -95,8 +95,8 @@ export default function UserDonation({ apiLink }) {
                                             <span className="type">{getType(item.category_id)}</span>
                                             <div className="label">Title </div>
                                             <h5>{item.title}</h5>
-                                            <div className="label">Expir Date</div>
-                                            <h5 className='title'>{formatDate(item.expiry_date)}</h5>
+                                            <div className="label">{item.category_id === 1 ? "Expir Date" : "Create Date"}</div>
+                                            <h5 className='title'>{formatDate(item.category_id === 1 ? item.expiry_date : item.pub_date)}</h5>
                                             {!item.active && <button className='main-btn' onClick={() => resetDonation(item.serial)}>Retreve <i className="fa-solid fa-repeat"></i></button>}
                                         </div>
                                     </div>
