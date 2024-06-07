@@ -7,12 +7,14 @@ import useAuth from '../../Context/AuthContext/AuthContext'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { Helmet } from 'react-helmet'
+import useContent from '../../utilities/ChangeLanguage'
 
 export default function NeedDetails({ apiLink }) {
     const { details } = useGetOneItem()
     const { id } = useParams()
     const { isloggedIn, userId } = useAuth()
     const navigatTo = useNavigate()
+    const content = useContent()
 
     const orderNeed = async () => {
         try {

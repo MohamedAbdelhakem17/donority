@@ -1,38 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import useContent from '../../../utilities/ChangeLanguage'
+import useGetRequestDetails from '../../../Context/RequestDetails/RequestDetailsContext'
+import formatDate from '../../../utilities/FormatData'
 import { useParams } from 'react-router-dom'
-import useGetRequestDetails from '../../../Context/RequestDetails/RequestDetailsContext';
-import { useEffect } from 'react';
-import formatDate from '../../../utilities/FormatData';
-import useContent from '../../../utilities/ChangeLanguage';
 
-export default function RequestDetails() {
+export default function UserNeedRequest() {
+
     const { id } = useParams()
     const content = useContent()
-    const imageLink = "https://api.donority.site/images/"
     const [itemData, setItemData] = useState()
-    const { fullDonationData } = useGetRequestDetails();
+    const { fullNeedData } = useGetRequestDetails();
 
     const showOneItem = (id) => {
-        const singleItem = fullDonationData.find((item) => item.serial === +id)
+        const singleItem = fullNeedData.find((item) => item.serial === +id)
         setItemData(singleItem)
     }
 
-
     useEffect(() => {
         showOneItem(id)
-    }, [fullDonationData])
+    }, [fullNeedData, id])
+
     return (
         <>
             <section className='main-padding-top request-details'>
                 {itemData !== undefined ?
                     <div className="container-fluid px-5">
-                        <div className="row pt-3">
-                            <div className="col-md-5 col-12">
-                                <img src={`${imageLink}${itemData.image_path}`} alt={itemData.title} />
-                            </div>
+                        <div className="row pt-3 justify-content-center">
+
                             <div className="col-md-7 col-12">
                                 <div className="px-2 content">
-                                    <h2>Donation information</h2>
+                                    <h2>Need information</h2>
                                     <div className="px-1">
                                         <p className="title">Title</p>
                                         <h5 className='label'>{itemData.title}</h5>
@@ -46,7 +43,7 @@ export default function RequestDetails() {
                                         <p className="title"> Data Add </p>
                                         <h5>{formatDate(itemData.pub_date)} </h5>
                                     </div>
-                                    {itemData.category_id == 1 && <>
+                                    {itemData.category_id === 1 && <>
 
                                         {itemData.expiry_date && <div className=" px-1">
                                             <p className="title">
@@ -64,7 +61,7 @@ export default function RequestDetails() {
                                         </div>
                                     </>}
 
-                                    <h2>The needy information</h2>
+                                    <h2>Donor information</h2>
                                     <div className="px-1">
                                         <p className="title">Donor's name</p>
                                         <h5 className='label'>{itemData.firstname} {itemData.lasrname}</h5>

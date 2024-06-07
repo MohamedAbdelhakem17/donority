@@ -20,8 +20,10 @@ import { RequestDetailsProvider } from "../../Context/RequestDetails/RequestDeta
 import RequestDetails from '../User/RequestDetails/RequestDetails';
 import NeedDetails from '../NeedDetails/NeedDetails';
 import UserNeed from '../User/UserNeed/UserNeed';
+import UserNeedRequest from '../User/UserNeedRequest/UserNeedRequest';
 
 const Base_API_URL = "https://api.donority.site/api/";
+
 const router = createHashRouter([
   { errorElement: <NotFound /> },
   {
@@ -38,7 +40,8 @@ const router = createHashRouter([
       { path: "/reset-password", element: <AuthProtectedRoute><ResetPassword apiLink={Base_API_URL} /></AuthProtectedRoute> },
       { path: "/user-profile", element: <DashboardProtectedRoute><UserProfile apiLink={Base_API_URL} /></DashboardProtectedRoute> },
       { path: "/user-request/:type", element: <DashboardProtectedRoute><RequestDetailsProvider><UserRequest apiLink={Base_API_URL} /></RequestDetailsProvider></DashboardProtectedRoute> },
-      { path: "/user-request/details/:id", element: <DashboardProtectedRoute><RequestDetailsProvider><RequestDetails /></RequestDetailsProvider></DashboardProtectedRoute> },
+      { path: "/user-request/donation-details/:id", element: <DashboardProtectedRoute><RequestDetailsProvider><RequestDetails /></RequestDetailsProvider></DashboardProtectedRoute> },
+      { path: "/user-request/need-details/:id", element: <DashboardProtectedRoute><RequestDetailsProvider><UserNeedRequest /></RequestDetailsProvider></DashboardProtectedRoute> },
       { path: "/in-need", element: <DashboardProtectedRoute><AddNeed apiLink={Base_API_URL} /></DashboardProtectedRoute> },
       { path: "/add-donation", element: <DashboardProtectedRoute><AddDonaiation apiLink={Base_API_URL} /></DashboardProtectedRoute> },
       { path: "/user-donation/:status", element: <DashboardProtectedRoute><UserDonation apiLink={Base_API_URL} /></DashboardProtectedRoute> },

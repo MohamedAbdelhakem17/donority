@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import useAuth from '../../../Context/AuthContext/AuthContext'
 import "./user-profile.css"
 import userPlacholder from "./831.jpg"
+import useContent from '../../../utilities/ChangeLanguage'
 export default function UserProfile() {
     const [userData, setUserData] = useState({})
     const [errors, setErrors] = useState({})
     const [uploadImage, setUploadImage] = useState()
-
+    const content = useContent()
     const { isloggedIn } = useAuth()
     const getUserData = () => {
         if (isloggedIn) {
@@ -88,7 +89,7 @@ export default function UserProfile() {
                                 <div className="img text-center">
                                     <img src={userData.image_path ? userData.image_path : uploadImage}
                                         alt={userData.user_name} />
-                                   
+
                                 </div>
                             </div>
                         </div>

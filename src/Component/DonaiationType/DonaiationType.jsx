@@ -48,7 +48,7 @@ export default function DonaiationType({ apiLink }) {
         } catch (error) {
             console.log(error)
         }
-    }, [apiLink , isloggedIn , userId])
+    }, [apiLink, isloggedIn, userId])
 
 
     const handelshowDetailes = (id, item) => {
@@ -64,7 +64,7 @@ export default function DonaiationType({ apiLink }) {
     return (
         <>
             <Helmet>
-                <title>DONORITY Dnation -{type}</title>
+                <title>Donority Dnation - {type}</title>
             </Helmet>
             <section className='main-padding-top donaiation-type'>
                 <div className="container py-2">

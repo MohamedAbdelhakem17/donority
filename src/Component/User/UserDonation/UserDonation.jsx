@@ -4,12 +4,13 @@ import axios from 'axios'
 import useAuth from "../../../Context/AuthContext/AuthContext"
 import formatDate from "../../../utilities/FormatData"
 import { getType } from '../../../utilities/HandelTYpe'
+import useContent from '../../../utilities/ChangeLanguage'
 
 export default function UserDonation({ apiLink }) {
     const [active, setActive] = useState(true)
     const { userId } = useAuth()
     const [donation, setDonation] = useState([])
-    // const content = useContent("donation")
+    const content = useContent()
     const imageLink = "https://api.donority.site/images/"
 
 

@@ -4,11 +4,13 @@ import placholder from "./placholder.jpg"
 import formatDate from '../../utilities/FormatData'
 import axios from 'axios'
 import useAuth from '../../Context/AuthContext/AuthContext'
-import { json, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import useContent from '../../utilities/ChangeLanguage'
 
 export default function DonaitionDetails({ apiLink }) {
     const imageLink = "https://api.donority.site/images/"
+    const content = useContent()
     const navigatTo = useNavigate()
     const { details } = useGetOneItem()
     const { isloggedIn, userId } = useAuth()

@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2"
 import useContent from '../../../utilities/ChangeLanguage';
+import querystring from 'querystring';
 
 export default function ResetPassword({ apiLink }) {
     const navigateTo = useNavigate()
@@ -50,21 +51,12 @@ export default function ResetPassword({ apiLink }) {
         try {
             setErrors({})
             setLoader(true);
-            const apiUrl = `${apiLink}EditUser`;
-            const newUserData = { ...userData, password: newPassword }
-            setUserData(newUserData)
-            const { data } = await axios.post(apiUrl, JSON.stringify(userData), {
-                headers: {
-                    // 'Content-Type': 'application/json'
-                    'Content-Type': 'application/x-www-form-urlencoded'
-
-                }
-            })
-
+            const apiUrl = `${apiLink}ResetPassword?ID=${userData.id}&newPassword=${encodeURIComponent(newPassword)}`;
+            const { data } = await axios.post(apiUrl)
             const { Code, Message } = data;
-            if (Code === 200) {
+            if (Code === 404) {
                 Swal.fire({
-                    position: "center-start",
+                    position: "center",
                     icon: "success",
                     title: Message,
                     showConfirmButton: false,
@@ -84,7 +76,11 @@ export default function ResetPassword({ apiLink }) {
     const onSubmitHandel = (event) => {
         event.preventDefault();
         if (isCorrectAnswer) {
-            editPassword()
+            if (newPassword.length !== 0) {
+                editPassword()
+            } else {
+                setErrors({ all: "Youe Must insert New Password" })
+            }
         } else {
             checkUserAnswer()
         }

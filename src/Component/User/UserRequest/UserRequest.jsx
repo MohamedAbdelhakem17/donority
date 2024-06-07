@@ -2,29 +2,29 @@ import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import useGetRequestDetails from '../../../Context/RequestDetails/RequestDetailsContext'
 import formatDate from '../../../utilities/FormatData'
+import useContent from '../../../utilities/ChangeLanguage';
 
 export default function UserRequest() {
-  const navigateTo = useNavigate()
+  const { fullDonationData, fullNeedData } = useGetRequestDetails();
+  const content = useContent()
   const { type } = useParams()
   const [active, setActive] = useState(type)
-  const { fullDonationData, fullNeedData } = useGetRequestDetails();
-  // const [loading, setLoding] = useState(true)
+  const navigateTo = useNavigate()
+
   const handleOptionClick = (type) => {
     setActive(type);
     navigateTo(`/user-request/${type}`);
-    // setLoding(false);
   };
 
   const showNeedsDetails = (id) => {
-    navigateTo(`/user-request/details/${id}`)
+    navigateTo(`/user-request/need-details/${id}`)
   }
 
   const showDonationDetails = (id) => {
-    navigateTo(`/user-request/details/${id}`)
+    navigateTo(`/user-request/donation-details/${id}`)
   }
 
-  console.log(fullDonationData , "fullDonationData")
-  console.log(fullNeedData , "fullNeedData")
+
 
   return (
     <section className='user-request main-padding-top '>
@@ -80,10 +80,10 @@ export default function UserRequest() {
                 </div>)
                 : (
                   <div className="loading">
-                    
-                      <h4>There are no items to display</h4>
 
-                    
+                    <h4>There are no items to display</h4>
+
+
                   </div>
                 )
             }

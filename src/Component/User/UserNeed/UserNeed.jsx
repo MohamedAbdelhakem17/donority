@@ -3,11 +3,13 @@ import useAuth from '../../../Context/AuthContext/AuthContext'
 import axios from 'axios'
 import { getType } from '../../../utilities/HandelTYpe'
 import formatDate from '../../../utilities/FormatData'
+import useContent from '../../../utilities/ChangeLanguage'
 
 export default function UserNeed({ apiLink }) {
     const [active, setActive] = useState(true)
     const [userNeeds, setUserNeeds] = useState([])
     const { userId } = useAuth()
+    const content = useContent()
 
     const getUserNeeds = async () => {
         try {

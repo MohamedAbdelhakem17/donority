@@ -11,6 +11,7 @@ import useContent from '../../../utilities/ChangeLanguage';
 export default function AddDonaiation({ apiLink }) {
     const { userId } = useAuth()
     const imageFile = useRef()
+    const content = useContent()
     const navigateTo = useNavigate()
     const [imageName, setImageName] = useState(null)
     const [selectedValue, setSelectedValue] = useState(null);
@@ -80,7 +81,6 @@ export default function AddDonaiation({ apiLink }) {
         return `${yyyy}-${mm}-${dd}`;
     };
 
-    const test = useContent("test")
 
 
 
@@ -129,7 +129,7 @@ export default function AddDonaiation({ apiLink }) {
                     showConfirmButton: false,
                     timer: 1200
                 });
-                setTimeout(() => { navigateTo("/user-donation") }, 1500)
+                setTimeout(() => { navigateTo("/user-donation/available") }, 1500)
             } else {
                 setErrors({ all: Message });
             }

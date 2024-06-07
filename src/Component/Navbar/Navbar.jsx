@@ -102,7 +102,6 @@ export default function Navbar() {
                             <select name="language" id="language" onChange={handleChangeLanguage} value={lang}>
                                 <option value="en" >{content("language.en")}</option>
                                 <option value="ar" >{content("language.ar")}</option>
-                                <option value="ar" >{content("language.ar")}</option>
                             </select>
                         </ul>
                     </div>

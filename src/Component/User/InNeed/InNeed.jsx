@@ -5,10 +5,13 @@ import useAuth from "../../../Context/AuthContext/AuthContext";
 import Swal from "sweetalert2"
 import { getFormattedDate } from '../../../utilities/FormatData';
 import Joi from 'joi';
-// import useContent from '../../../utilities/ChangeLanguage';
+import useContent from '../../../utilities/ChangeLanguage';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddNeed({ apiLink }) {
     const { userId } = useAuth()
+    const content = useContent()
+    const navigateTo = useNavigate()
     const [selectedValue, setSelectedValue] = useState(null);
     const [categoryId, setCategoryId] = useState("");
     const [errors, setErrors] = useState({})
@@ -81,7 +84,7 @@ export default function AddNeed({ apiLink }) {
                     showConfirmButton: false,
                     timer: 1200
                 });
-                // setTimeout(() => { navigateTo("/signin") }, 1500)
+                setTimeout(() => { navigateTo("/user-need") }, 1500)
             } else {
                 setErrors({ all: Message });
             }
